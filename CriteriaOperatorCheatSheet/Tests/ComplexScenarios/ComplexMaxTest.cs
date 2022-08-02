@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dxTestSolutionXPO.Tests.ComplexScenarios.cs {
+namespace dxTestSolutionXPO.Tests.ComplexScenarios {
     [TestFixture]
     public class ComplexMaxTest: BaseTest {
         //FreeJoins
