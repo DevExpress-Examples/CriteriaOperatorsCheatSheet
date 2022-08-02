@@ -53,15 +53,29 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForMaxMinTest();
             var uow = new UnitOfWork();
             //act
-    
-
-
             CriteriaOperator criterion2 = CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Any(oi => oi.ItemPrice == o.Price));
             var xpColl2 = new XPCollection<Order>(uow);
             xpColl2.Filter = criterion2;
             var col = xpColl2.ToList();
             var result4 = xpColl2.Count;
             Assert.AreEqual(1, result4);
+
+        }
+
+
+        [Test]
+        public void Test0_1() {
+            //arrange
+            PopulateForComplex();
+            var uow = new UnitOfWork();
+            //act
+            CriteriaOperator criterion = new ContainsOperator("OrderItems", new BinaryOperator(new OperandProperty("Company"), new OperandProperty("^.DefaultAddress.City"),
+            BinaryOperatorType.Equal));
+
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            //assert
+            Assert.AreEqual(1, resCollection.Count);
+            Assert.AreEqual("Order1", resCollection[0].OrderName);
 
         }
     }
