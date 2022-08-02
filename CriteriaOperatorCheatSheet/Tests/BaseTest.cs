@@ -97,7 +97,23 @@ namespace dxTestSolutionXPO.Tests {
 
             uow.CommitChanges();
         }
-        public void PopulateForComplContains() {
+
+
+        public void PopulateForComplexMax() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
+
+            var o0 = ConnectionHelper.AddOrder(uow, "order0", new DateTime(2022, 8, 2), "red");
+            var o1 = ConnectionHelper.AddOrder(uow, "order1", new DateTime(2022, 7, 5), "red");
+            var o2 = ConnectionHelper.AddOrder(uow, "order2", new DateTime(2022, 8, 2), "red");
+            var o3 = ConnectionHelper.AddOrder(uow, "order3", new DateTime(2022, 6, 12), "red");
+            var o4 = ConnectionHelper.AddOrder(uow, "order4", new DateTime(2022, 5, 17), "green");
+            var o5 = ConnectionHelper.AddOrder(uow, "order5", new DateTime(2022, 9, 22), "green");
+
+            uow.CommitChanges();
+
+        }
+            public void PopulateForComplContains() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
             var c0 = ConnectionHelper.AddOrder(uow, "Order0", 44);

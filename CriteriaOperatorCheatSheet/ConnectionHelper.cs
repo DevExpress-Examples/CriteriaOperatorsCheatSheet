@@ -62,6 +62,12 @@ namespace dxTestSolutionXPO {
             c.OrderDate = _date;
             return c;
         }
+
+        public static Order AddOrder(UnitOfWork _uow, string _orderName, DateTime _date, string _color) {
+            var c = AddOrder(_uow, _orderName, _date);
+            c.OrderColor = _color;
+            return c;
+        }
         public static Order AddOrder(UnitOfWork _uow, string _orderName, string _type, string _color) {
             var c = AddOrder(_uow, _orderName);
             c.OrderType = _type;
