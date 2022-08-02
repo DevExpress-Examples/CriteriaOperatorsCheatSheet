@@ -94,7 +94,7 @@ namespace dxTestSolutionXPO.Tests {
             var t10 = ConnectionHelper.AddOrderItem(uow, c1, "Item1-1", 10, false);
             var t11 = ConnectionHelper.AddOrderItem(uow, c1, "Item1-2", 20, true);
             t11.Company = new Company(uow);
-
+            t11.Company.CompanyName="Company1";
             uow.CommitChanges();
         }
 

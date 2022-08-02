@@ -55,5 +55,43 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             Assert.AreEqual(1, result3);
             Assert.AreEqual("FirstName1", xpColl[0].OrderName);
         }
+
+        [Test]
+        public void GetItemsWithCompanyName_String() {
+            //arrange
+            PopulateForComplex();
+            var uow = new UnitOfWork();
+            //act
+            CriteriaOperator criterion = CriteriaOperator.Parse("[OrderItems][Company.CompanyName = 'Company1']");
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            //assert
+            Assert.AreEqual(1, resCollection.Count);
+            Assert.AreEqual("FirstName1", resCollection[0].OrderName);
+        }
+        [Test]
+        public void GetItemsWithCompanyName_Typed() {
+            //arrange
+            PopulateForComplex();
+            var uow = new UnitOfWork();
+            //act
+            var criterionForCollection = new BinaryOperator("Company.CompanyName", "Company1");
+            var criterion = new ContainsOperator(nameof(Order.OrderItems), criterionForCollection);
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            //assert
+            Assert.AreEqual(1, resCollection.Count);
+            Assert.AreEqual("FirstName1", resCollection[0].OrderName);
+        }
+        [Test]
+        public void GetItemsWithCompanyName_LINQ() {
+            //arrange
+            PopulateForComplex();
+            var uow = new UnitOfWork();
+            //act
+            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Any(oi => oi.Company.CompanyName == "Company1"));
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            //assert
+            Assert.AreEqual(1, resCollection.Count);
+            Assert.AreEqual("FirstName1", resCollection[0].OrderName);
+        }
     }
 }
