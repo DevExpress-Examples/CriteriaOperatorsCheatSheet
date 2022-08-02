@@ -67,7 +67,6 @@
     <Compile Include="Tests\BetweenOperatorTest.cs" />
     <Compile Include="Tests\BinaryOperatorTest.cs" />
     <Compile Include="Tests\ComplexScenarios\Complex.cs" />
-    <Compile Include="Tests\ComplexScenarios\ComplexContains.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexContainsTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexGroupTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexMaxTest.cs" />
