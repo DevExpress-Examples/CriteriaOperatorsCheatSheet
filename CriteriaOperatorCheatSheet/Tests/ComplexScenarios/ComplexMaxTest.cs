@@ -39,7 +39,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             Assert.AreEqual(2, resultCollection.Count);
         }
         [Test]
-        public void GetItemsWithMaxDate_LINQ() {
+        public void GetItemsWithMaxDate_Linq() {
             //arrange
             PopulateForComplexMax();
             var uow = new UnitOfWork();

@@ -42,7 +42,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             Assert.AreEqual("FirstName1", xpColl[0].OrderName);
         }
         [Test]
-        public void GetOrdersWithSpecificOrderItems_LINQ() {
+        public void GetOrdersWithSpecificOrderItems_Linq() {
             //arrange
             PopulateSimpleCollectionForMaxMinTest();
             var uow = new UnitOfWork();
@@ -82,7 +82,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             Assert.AreEqual("FirstName1", resCollection[0].OrderName);
         }
         [Test]
-        public void GetItemsWithCompanyName_LINQ() {
+        public void GetItemsWithCompanyName_Linq() {
             //arrange
             PopulateForComplex();
             var uow = new UnitOfWork();

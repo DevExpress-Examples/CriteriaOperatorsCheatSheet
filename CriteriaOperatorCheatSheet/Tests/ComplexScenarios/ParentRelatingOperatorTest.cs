@@ -39,7 +39,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             Assert.AreEqual(1, resultCollection.Count);
         }
         [Test]
-        public void ParentRelating_LINQ() {
+        public void ParentRelating_Linq() {
             //arrange
             PopulateForComplexParentRelating();
             var uow = new UnitOfWork();
