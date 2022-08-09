@@ -70,6 +70,7 @@
     <Compile Include="Tests\ComplexScenarios\ComplexContainsTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexGroupTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexMaxTest.cs" />
+    <Compile Include="Tests\ComplexScenarios\ParentRelatingOperatorTest.cs" />
     <Compile Include="Tests\ContainsOperatorTest.cs" />
     <Compile Include="Tests\FunctionOperators\DateOperators.cs" />
     <Compile Include="Tests\FunctionOperators\IIfOperator.cs" />

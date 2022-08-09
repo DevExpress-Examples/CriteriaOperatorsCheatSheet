@@ -103,6 +103,11 @@ namespace dxTestSolutionXPO {
             t.Order = _parent;
             return t;
         }
+        public static OrderItem AddOrderItem(UnitOfWork _uow, Order _parent, string _subject,DateTime _registrationDate) {
+            var t = AddOrderItem(_uow,_parent,_subject);
+            t.RegistrationDate = _registrationDate;
+            return t;
+        }
         public static OrderItem AddOrderItem(UnitOfWork _uow, Order _parent, string _subject, int _price, bool _isAvailable, Company _company) {
             var t = AddOrderItem(_uow, _parent, _subject, _price, _isAvailable);
             t.Company = _company;

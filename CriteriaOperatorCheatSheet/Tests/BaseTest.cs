@@ -98,7 +98,20 @@ namespace dxTestSolutionXPO.Tests {
             uow.CommitChanges();
         }
 
+        public void PopulateForComplexParentRelating() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
 
+            var  o0= ConnectionHelper.AddOrder(uow, "order0", new DateTime(2022, 8, 2));
+            var  o1= ConnectionHelper.AddOrder(uow, "order1", new DateTime(2022, 8, 3));
+
+            var oi00 = ConnectionHelper.AddOrderItem(uow, o0, "Item00", new DateTime(2022, 9, 3));
+            var oi01 = ConnectionHelper.AddOrderItem(uow, o0, "Item01", new DateTime(2022, 9, 4));
+
+            var oi10 = ConnectionHelper.AddOrderItem(uow, o1, "Item10", new DateTime(2022, 9, 5));
+            var oi11 = ConnectionHelper.AddOrderItem(uow, o1, "Item11", new DateTime(2022, 8, 3));
+            uow.CommitChanges();
+        }
         public void PopulateForComplexMax() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
