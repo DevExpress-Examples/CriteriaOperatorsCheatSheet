@@ -97,7 +97,36 @@ namespace dxTestSolutionXPO.Tests {
             t11.Company.CompanyName="Company1";
             uow.CommitChanges();
         }
+        public void PopulateForComplexSum() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
+            var o0 = ConnectionHelper.AddOrder(uow, "order0");
+            var o1 = ConnectionHelper.AddOrder(uow, "order1");
 
+            var oi00 = ConnectionHelper.AddOrderItem(uow, o0, "Item00");
+
+            var p000 = ConnectionHelper.AddPosition(uow, oi00, "position000", 1);
+            var p001 = ConnectionHelper.AddPosition(uow, oi00, "position001", 2);
+
+            var oi01 = ConnectionHelper.AddOrderItem(uow, o0, "Item01");
+
+            var p010 = ConnectionHelper.AddPosition(uow, oi01, "position010", 3);
+            var p011 = ConnectionHelper.AddPosition(uow, oi01, "position011", 4);
+
+            var oi10 = ConnectionHelper.AddOrderItem(uow, o1, "Item10");
+
+            var p100 = ConnectionHelper.AddPosition(uow, oi10, "position100", 10);
+            var p101 = ConnectionHelper.AddPosition(uow, oi10, "position101", 20);
+
+            var oi11 = ConnectionHelper.AddOrderItem(uow, o1, "Item11");
+
+            var p110 = ConnectionHelper.AddPosition(uow, oi11, "position110", 30);
+            var p111 = ConnectionHelper.AddPosition(uow, oi11, "position111", 40);
+
+
+
+            uow.CommitChanges();
+        }
         public void PopulateForComplexParentRelating() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();

@@ -97,6 +97,14 @@ namespace dxTestSolutionXPO {
             c.IsActive = _isActive;
             return c;
         }
+        public static   Position AddPosition(UnitOfWork _uow, OrderItem _parent, string _name,int _count) {
+            var p = new Position(_uow);
+            p.ParentOrderItem = _parent;
+            p.PositionName = _name;
+            p.PositionCount = _count;
+            return p;
+        }
+
         public static OrderItem AddOrderItem(UnitOfWork _uow, Order _parent, string _subject) {
             var t = new OrderItem(_uow);
             t.OrderItemName = _subject;

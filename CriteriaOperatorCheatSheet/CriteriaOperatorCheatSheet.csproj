@@ -53,6 +53,7 @@
     <Compile Include="BusinessObjects\Order.cs" />
     <Compile Include="BusinessObjects\CustomClass.cs" />
     <Compile Include="BusinessObjects\OrderItem.cs" />
+    <Compile Include="BusinessObjects\Position.cs" />
     <Compile Include="ConnectionHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Tests\ComplexScenarios\ComplexContainsTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexGroupTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexMaxTest.cs" />
+    <Compile Include="Tests\ComplexScenarios\ComplexSumTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ParentRelatingOperatorTest.cs" />
     <Compile Include="Tests\ContainsOperatorTest.cs" />
     <Compile Include="Tests\FunctionOperators\DateOperators.cs" />

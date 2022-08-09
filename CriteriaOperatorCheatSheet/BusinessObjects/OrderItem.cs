@@ -4,6 +4,7 @@ using System.Text;
 using DevExpress.Xpo;
 using System.Diagnostics;
 
+
 namespace dxTestSolutionXPO.Module.BusinessObjects {
      [DebuggerDisplay("Subject: {OrderItemName}")]
     public class OrderItem : XPObject { 
@@ -59,6 +60,12 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
         public DateTime RegistrationDate {
             get => registrationDate;
             set => SetPropertyValue(nameof(RegistrationDate), ref registrationDate, value);
+        }
+        [Association]
+        public XPCollection<Position> Positions {
+            get {
+                return GetCollection<Position>(nameof(Positions));
+            }
         }
 
     }
