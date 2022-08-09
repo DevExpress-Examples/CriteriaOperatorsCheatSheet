@@ -69,6 +69,7 @@
     <Compile Include="Tests\BinaryOperatorTest.cs" />
     <Compile Include="Tests\ComplexScenarios\Complex.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexContainsTest.cs" />
+    <Compile Include="Tests\ComplexScenarios\ComplexDateTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexGroupTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexMaxTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexSumTest.cs" />

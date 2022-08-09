@@ -127,6 +127,20 @@ namespace dxTestSolutionXPO.Tests {
 
             uow.CommitChanges();
         }
+
+        public void PopulateForComplexDateTwoWeek() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
+
+            var o0 = ConnectionHelper.AddOrder(uow, "order0", new DateTime(2022, 8, 8));
+            var o1 = ConnectionHelper.AddOrder(uow, "order1", new DateTime(2022, 6, 19));
+            var o2 = ConnectionHelper.AddOrder(uow, "order2", new DateTime(2022, 7, 27));
+            var o3 = ConnectionHelper.AddOrder(uow, "order3", new DateTime(2022, 7, 20));
+            var o4 = ConnectionHelper.AddOrder(uow, "order4", new DateTime(2022, 8, 1));
+
+            uow.CommitChanges();
+        }
+
         public void PopulateForComplexParentRelating() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
