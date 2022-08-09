@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\Company.cs" />
+    <Compile Include="BusinessObjects\ExtendedOrder.cs" />
     <Compile Include="BusinessObjects\Order.cs" />
     <Compile Include="BusinessObjects\CustomClass.cs" />
     <Compile Include="BusinessObjects\OrderItem.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Tests\ComplexScenarios\ComplexMaxTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexSumTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ParentRelatingOperatorTest.cs" />
+    <Compile Include="Tests\ComplexScenarios\UpcastingTest.cs" />
     <Compile Include="Tests\ContainsOperatorTest.cs" />
     <Compile Include="Tests\FunctionOperators\DateOperators.cs" />
     <Compile Include="Tests\FunctionOperators\IIfOperator.cs" />

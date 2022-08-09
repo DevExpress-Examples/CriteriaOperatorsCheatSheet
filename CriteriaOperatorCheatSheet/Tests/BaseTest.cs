@@ -127,7 +127,21 @@ namespace dxTestSolutionXPO.Tests {
 
             uow.CommitChanges();
         }
+        public void PopulateForUpcasting() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
+            var extendedOrder0 = new ExtendedOrder(uow);
+            extendedOrder0.OrderName = "exOrder0";
+            extendedOrder0.ExtendedDescription = "description0";
 
+            var extendedOrder1 = new ExtendedOrder(uow);
+            extendedOrder1.OrderName = "exOrder1";
+            extendedOrder1.ExtendedDescription = "description1";
+
+            var plainOrder = ConnectionHelper.AddOrder(uow, "orderPlain");
+
+            uow.CommitChanges();
+        }
         public void PopulateForComplexDateTwoWeek() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
