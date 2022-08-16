@@ -31,7 +31,7 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForMaxMinTest();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = new ContainsOperator("OrderItems", new BinaryOperator("ItemPrice", 44));
+            CriteriaOperator criterion = new ContainsOperator(nameof(Order.OrderItems), new BinaryOperator("ItemPrice", 44));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
