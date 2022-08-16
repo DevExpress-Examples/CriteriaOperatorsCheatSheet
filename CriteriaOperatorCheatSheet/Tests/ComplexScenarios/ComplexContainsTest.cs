@@ -31,7 +31,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateSimpleCollectionForMaxMinTest();
             var uow = new UnitOfWork();
             //act
-            var containsCriterion = new ContainsOperator("OrderItems", new BinaryOperator("ItemPrice", 10));
+            var containsCriterion = new ContainsOperator(nameof(Order.OrderItems), new BinaryOperator("ItemPrice", 10));
             var simpleCriterion = new BinaryOperator(nameof(Order.Price), 99);
             var criterion = new GroupOperator(containsCriterion, simpleCriterion);
             var xpColl = new XPCollection<Order>(uow);
