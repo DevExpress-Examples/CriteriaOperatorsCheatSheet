@@ -66,7 +66,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
-            Assert.AreEqual("FirstName1", resCollection[0].OrderName);
+            Assert.AreEqual("Order1", resCollection[0].OrderName);
         }
         [Test]
         public void GetItemsWithCompanyName_Typed() {
@@ -79,7 +79,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
-            Assert.AreEqual("FirstName1", resCollection[0].OrderName);
+            Assert.AreEqual("Order1", resCollection[0].OrderName);
         }
         [Test]
         public void GetItemsWithCompanyName_Linq() {
@@ -91,7 +91,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
-            Assert.AreEqual("FirstName1", resCollection[0].OrderName);
+            Assert.AreEqual("Order1", resCollection[0].OrderName);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios.cs {
             PopulateForComplex();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("Order.OrderName == 'FirstName1' AND  !IsNull(Company)");
+            CriteriaOperator criterion = CriteriaOperator.Parse("Order.OrderName == 'Order1' AND  !IsNull(Company)");
             var resCollection = new XPCollection<OrderItem>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -29,7 +29,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios.cs {
             PopulateForComplex();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("Order.OrderName == 'FirstName1' AND Not IsNull(Company)");
+            CriteriaOperator criterion = CriteriaOperator.Parse("Order.OrderName == 'Order1' AND Not IsNull(Company)");
             var resCollection = new XPCollection<OrderItem>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -41,7 +41,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios.cs {
             PopulateForComplex();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("Order.OrderName == 'FirstName1' AND  Company is not null");
+            CriteriaOperator criterion = CriteriaOperator.Parse("Order.OrderName == 'Order1' AND  Company is not null");
             var resCollection = new XPCollection<OrderItem>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -53,7 +53,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios.cs {
             PopulateForComplex();
             var uow = new UnitOfWork();
             //act
-            var operator1 = new BinaryOperator("Order.OrderName", "FirstName1");
+            var operator1 = new BinaryOperator("Order.OrderName", "Order1");
             var operator2 = new FunctionOperator(FunctionOperatorType.IsNull, new OperandProperty(nameof(OrderItem.Company)));
             var operator2_2 = new UnaryOperator(UnaryOperatorType.Not, operator2);
             CriteriaOperator criterion = new GroupOperator(GroupOperatorType.And, operator1, operator2_2);
@@ -68,7 +68,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios.cs {
             PopulateForComplex();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<OrderItem>(oi => oi.Order.OrderName == "FirstName1" && oi.Company != null);
+            CriteriaOperator criterion = CriteriaOperator.FromLambda<OrderItem>(oi => oi.Order.OrderName == "Order1" && oi.Company != null);
             var resCollection = new XPCollection<OrderItem>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);

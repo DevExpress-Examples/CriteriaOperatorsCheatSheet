@@ -87,10 +87,10 @@ namespace dxTestSolutionXPO.Tests {
         public void PopulateForComplex() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
-            var c0 = ConnectionHelper.AddOrder(uow, "FirstName0", 44);
+            var c0 = ConnectionHelper.AddOrder(uow, "Order0", 44);
             var t00 = ConnectionHelper.AddOrderItem(uow, c0, "Item0-1", 10, false);
             var t01 = ConnectionHelper.AddOrderItem(uow, c0, "Item0-2", 20, true);
-            var c1 = ConnectionHelper.AddOrder(uow, "FirstName1", 55);
+            var c1 = ConnectionHelper.AddOrder(uow, "Order1", 55);
             var t10 = ConnectionHelper.AddOrderItem(uow, c1, "Item1-1", 10, false);
             var t11 = ConnectionHelper.AddOrderItem(uow, c1, "Item1-2", 20, true);
             t11.Company = new Company(uow);
