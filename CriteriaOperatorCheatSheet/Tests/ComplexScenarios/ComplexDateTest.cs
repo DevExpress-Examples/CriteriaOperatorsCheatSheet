@@ -35,11 +35,10 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var uow = new UnitOfWork();
             //act
             var targetDate = new DateTime(2022, 8, 9);
-            var startDateCriterion = new FunctionOperator(FunctionOperatorType.AddDays, new OperandValue(targetDate),new OperandValue(-14));
+            var startDateCriterion = new FunctionOperator(FunctionOperatorType.AddDays, new OperandValue(targetDate), new OperandValue(-14));
             var startOperator = new BinaryOperator(new OperandProperty(nameof(Order.OrderDate)), startDateCriterion, BinaryOperatorType.GreaterOrEqual);
             var endOperator = new BinaryOperator(new OperandProperty(nameof(Order.OrderDate)), new OperandValue(targetDate), BinaryOperatorType.Less);
-
-            var criterion=new GroupOperator(GroupOperatorType.And,startOperator, endOperator);
+            var criterion = new GroupOperator(GroupOperatorType.And, startOperator, endOperator);
 
             var resultCollection = new XPCollection<Order>(uow, criterion);
             var filteredResult = resultCollection.OrderBy(x => x.OrderName).ToList();
