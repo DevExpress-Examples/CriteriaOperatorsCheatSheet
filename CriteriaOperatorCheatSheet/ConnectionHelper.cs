@@ -28,6 +28,7 @@ namespace dxTestSolutionXPO {
         static string ConnectionString;
         static bool UseInMemoryStore;
         public static void Connect(DevExpress.Xpo.DB.AutoCreateOption autoCreateOption, bool threadSafe = false) {
+            EnumProcessingHelper.RegisterEnum<OrderStatusEnum>();
             ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             if(threadSafe) {
                 var provider = XpoDefault.GetConnectionProvider(ConnectionString, autoCreateOption);
@@ -55,6 +56,11 @@ namespace dxTestSolutionXPO {
         public static Order AddOrder(UnitOfWork _uow, string _orderName) {
             var c = new Order(_uow);
             c.OrderName = _orderName;
+            return c;
+        }
+        public static Order AddOrder(UnitOfWork _uow, string _orderName,OrderStatusEnum _status) {
+            var c =AddOrder(_uow, _orderName);
+            c.Status = _status;
             return c;
         }
         public static Order AddOrder(UnitOfWork _uow, string _orderName, DateTime _date) {

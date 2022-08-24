@@ -97,6 +97,14 @@ namespace dxTestSolutionXPO.Tests {
             t11.Company.CompanyName="Company1";
             uow.CommitChanges();
         }
+        public void PopulateForEnum() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
+            var o0 = ConnectionHelper.AddOrder(uow, "order0",OrderStatusEnum.Active);
+            var o1 = ConnectionHelper.AddOrder(uow, "order1",OrderStatusEnum.Delayed);
+
+            uow.CommitChanges();
+        }
         public void PopulateForComplexSum() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();

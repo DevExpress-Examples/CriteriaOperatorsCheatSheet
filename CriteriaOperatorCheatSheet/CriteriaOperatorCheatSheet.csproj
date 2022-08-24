@@ -54,6 +54,7 @@
     <Compile Include="BusinessObjects\Order.cs" />
     <Compile Include="BusinessObjects\CustomClass.cs" />
     <Compile Include="BusinessObjects\OrderItem.cs" />
+    <Compile Include="BusinessObjects\OrderStatusEnum.cs" />
     <Compile Include="BusinessObjects\Position.cs" />
     <Compile Include="ConnectionHelper.cs" />
     <Compile Include="Program.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Tests\BetweenOperatorTest.cs" />
     <Compile Include="Tests\BinaryOperatorTest.cs" />
+    <Compile Include="Tests\ComplexScenarios\EnumTest.cs" />
     <Compile Include="Tests\ComplexScenarios\TempTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexContainsTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexDateTest.cs" />

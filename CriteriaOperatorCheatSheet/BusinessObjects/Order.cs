@@ -107,5 +107,11 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
             set => SetPropertyValue(nameof(DefaultCompanyName), ref defaultCompanyName, value);
         }
 
+        OrderStatusEnum status;
+        public OrderStatusEnum Status {
+            get => status;
+            set => SetPropertyValue(nameof(Status), ref status, value);
+        }
+
     }
 }
