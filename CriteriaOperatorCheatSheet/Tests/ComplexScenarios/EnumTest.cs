@@ -12,7 +12,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
     [TestFixture]
     public class EnumTest : BaseTest {
         [Test]
-        public void ComplexSum_String() {
+        public void EnumTest_String() {
             //arrange
             PopulateForEnum();
             var uow = new UnitOfWork();
@@ -24,7 +24,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             Assert.AreEqual(1, resultCollection.Count);
         }
         [Test]
-        public void ComplexSum_Typed() {
+        public void EnumTest_Typed() {
             //arrange
             PopulateForEnum();
             var uow = new UnitOfWork();
@@ -36,7 +36,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             Assert.AreEqual(1, resultCollection.Count);
         }
         [Test]
-        public void ComplexSum_Linq() {
+        public void EnumTest_Linq() {
             //arrange
             PopulateForEnum();
             var uow = new UnitOfWork();
