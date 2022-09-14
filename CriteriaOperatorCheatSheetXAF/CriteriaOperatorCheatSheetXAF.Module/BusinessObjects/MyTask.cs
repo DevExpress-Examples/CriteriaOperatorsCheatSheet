@@ -38,16 +38,12 @@ namespace dxTestSolution.Module.BusinessObjects {
         [Association("Contact-Tasks")]
         [DataSourceCriteria("Owner==CurrentUserId()")]
         public Contact AssignedTo {
-            get {
-                return _assignedTo;
-            }
-            set {
-                SetPropertyValue(nameof(AssignedTo), ref _assignedTo, value);
-            }
+            get { return _assignedTo; }
+            set { SetPropertyValue(nameof(AssignedTo), ref _assignedTo, value); }
         }
 
 
-        
+
         [Size(SizeAttribute.DefaultStringMappingFieldSize)]
         [DataSourceCriteria("IsCurrentUserId(Owner)")]
         public Contact NewContact1 {
