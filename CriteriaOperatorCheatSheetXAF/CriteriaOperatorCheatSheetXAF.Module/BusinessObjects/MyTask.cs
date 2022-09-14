@@ -15,8 +15,8 @@ using DevExpress.Persistent.Base.General;
 using DevExpress.ExpressApp.SystemModule;
 
 namespace dxTestSolution.Module.BusinessObjects {
-     [DefaultClassOptions]
-     [DefaultProperty("Subject")]
+    [DefaultClassOptions]
+    [DefaultProperty("Subject")]
     public class MyTask : BaseObject {
         public MyTask(Session session)
             : base(session) {
@@ -35,6 +35,7 @@ namespace dxTestSolution.Module.BusinessObjects {
         }
         Contact _assignedTo;
         [Association("Contact-Tasks")]
+        [DataSourceCriteria("Owner==CurrentUserId()")]
         public Contact AssignedTo {
             get {
                 return _assignedTo;

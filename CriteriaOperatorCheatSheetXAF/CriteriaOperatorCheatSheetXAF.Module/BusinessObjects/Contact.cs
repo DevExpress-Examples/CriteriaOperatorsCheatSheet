@@ -15,6 +15,7 @@ using DevExpress.ExpressApp.Editors;
 using System.Diagnostics;
 using DevExpress.Persistent.Base.General;
 using DevExpress.ExpressApp.SystemModule;
+using CriteriaOperatorCheatSheetXAF.Module.BusinessObjects;
 
 namespace dxTestSolution.Module.BusinessObjects {
      [DefaultClassOptions]
@@ -26,6 +27,7 @@ namespace dxTestSolution.Module.BusinessObjects {
         public override void AfterConstruction() {
             base.AfterConstruction();
         }
+        ApplicationUser owner;
         string _firstName;
         public string FirstName {
             get {
@@ -44,7 +46,7 @@ namespace dxTestSolution.Module.BusinessObjects {
                 SetPropertyValue(nameof(LastName), ref _lastName, value);
             }
         }
-		int _age;
+        int _age;
         public int Age {
             get {
                 return _age;
@@ -52,6 +54,14 @@ namespace dxTestSolution.Module.BusinessObjects {
             set {
                 SetPropertyValue(nameof(Age), ref _age, value);
             }
+        }
+
+
+        
+        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+        public ApplicationUser Owner {
+            get => owner;
+            set => SetPropertyValue(nameof(Owner), ref owner, value);
         }
         // DateTime _birthDate;
         // public DateTime BirthDate {
