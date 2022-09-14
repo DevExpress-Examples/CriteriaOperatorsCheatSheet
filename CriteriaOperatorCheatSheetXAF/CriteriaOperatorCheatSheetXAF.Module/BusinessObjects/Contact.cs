@@ -58,7 +58,6 @@ namespace dxTestSolution.Module.BusinessObjects {
 
 
         
-        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
         public ApplicationUser Owner {
             get => owner;
             set => SetPropertyValue(nameof(Owner), ref owner, value);

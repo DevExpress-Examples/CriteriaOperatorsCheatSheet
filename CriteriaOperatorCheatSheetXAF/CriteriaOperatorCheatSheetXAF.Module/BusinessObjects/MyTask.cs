@@ -24,6 +24,7 @@ namespace dxTestSolution.Module.BusinessObjects {
         public override void AfterConstruction() {
             base.AfterConstruction();
         }
+        Contact newContact1;
         string _subject;
         public string Subject {
             get {
@@ -43,6 +44,15 @@ namespace dxTestSolution.Module.BusinessObjects {
             set {
                 SetPropertyValue(nameof(AssignedTo), ref _assignedTo, value);
             }
+        }
+
+
+        
+        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+        [DataSourceCriteria("IsCurrentUserId(Owner)")]
+        public Contact NewContact1 {
+            get => newContact1;
+            set => SetPropertyValue(nameof(NewContact1), ref newContact1, value);
         }
         bool _isActive;
         public bool IsActive {
