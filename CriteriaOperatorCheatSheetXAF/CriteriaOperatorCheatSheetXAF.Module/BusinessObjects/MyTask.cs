@@ -25,6 +25,7 @@ namespace dxTestSolution.Module.BusinessObjects {
             base.AfterConstruction();
         }
         Contact newContact1;
+        Contact newContact2;
         string _subject;
         public string Subject {
             get {
@@ -44,11 +45,17 @@ namespace dxTestSolution.Module.BusinessObjects {
 
 
 
-        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+
         [DataSourceCriteria("IsCurrentUserId(Owner)")]
         public Contact NewContact1 {
             get => newContact1;
             set => SetPropertyValue(nameof(NewContact1), ref newContact1, value);
+        }
+
+        [DataSourceCriteria("IsCurrentUserInRole('Default')")]
+        public Contact NewContact2 {
+            get => newContact2;
+            set => SetPropertyValue(nameof(NewContact2), ref newContact2, value);
         }
         bool _isActive;
         public bool IsActive {
