@@ -27,6 +27,7 @@ namespace dxTestSolution.Module.BusinessObjects {
         public override void AfterConstruction() {
             base.AfterConstruction();
         }
+        Department contactDepartment;
         ApplicationUser owner;
         string _firstName;
         public string FirstName {
@@ -37,6 +38,12 @@ namespace dxTestSolution.Module.BusinessObjects {
                 SetPropertyValue(nameof(FirstName), ref _firstName, value);
             }
         }
+        public Department ContactDepartment {
+            get => contactDepartment;
+            set => SetPropertyValue(nameof(ContactDepartment), ref contactDepartment, value);
+        }
+
+
         string _lastName;
         public string LastName {
             get {

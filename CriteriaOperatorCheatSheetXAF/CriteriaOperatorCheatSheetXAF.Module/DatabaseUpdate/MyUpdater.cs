@@ -31,6 +31,10 @@ namespace dxTestSolution.Module.DatabaseUpdate {
             if(cnt > 0) {
                 return;
             }
+            for(int i = 0; i < 2; i++) {
+                var dep = ObjectSpace.CreateObject<Department>();
+                dep.DepartmentName = "Department"+i;
+            }
             for(int i = 0; i < 5; i++) {
                 string contactName = "FirstName" + i;
                 var contact = CreateObject<Contact>("FirstName", contactName);
@@ -42,12 +46,20 @@ namespace dxTestSolution.Module.DatabaseUpdate {
                         contact.Owner = usr;
                     }
                 }
+                var d0= ObjectSpace.FindObject<Department>(CriteriaOperator.FromLambda<Department>(x => x.DepartmentName == "Department0"));
+                var d1= ObjectSpace.FindObject<Department>(CriteriaOperator.FromLambda<Department>(x => x.DepartmentName == "Department1"));
+                if(i % 2 == 0) {
+                    contact.ContactDepartment = d0;
+                } else {
+                    contact.ContactDepartment = d1;
+                }
                 for(int j = 0; j < 2; j++) {
                     string taskName = "Subject" + i + " - " + j;
                     var task = CreateObject<MyTask>("Subject", taskName);
                     task.AssignedTo = contact;
                 }
             }
+           
             //secur#0  
             ObjectSpace.CommitChanges(); //Uncomment this line to persist created object(s).
         }

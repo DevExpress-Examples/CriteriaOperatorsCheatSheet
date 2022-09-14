@@ -13,6 +13,7 @@ using DevExpress.Persistent.Validation;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.Persistent.Base.General;
 using DevExpress.ExpressApp.SystemModule;
+using CriteriaOperatorCheatSheetXAF.Module.BusinessObjects;
 
 namespace dxTestSolution.Module.BusinessObjects {
     [DefaultClassOptions]
@@ -24,6 +25,8 @@ namespace dxTestSolution.Module.BusinessObjects {
         public override void AfterConstruction() {
             base.AfterConstruction();
         }
+        Contact newContact3;
+        Department myTaskDepartment;
         Contact newContact1;
         Contact newContact2;
         string _subject;
@@ -57,6 +60,12 @@ namespace dxTestSolution.Module.BusinessObjects {
             get => newContact2;
             set => SetPropertyValue(nameof(NewContact2), ref newContact2, value);
         }
+
+        [DataSourceCriteria("ContactDepartment = '@This.MyTaskDepartment'")]
+        public Contact NewContact3 {
+            get => newContact3;
+            set => SetPropertyValue(nameof(NewContact3), ref newContact3, value);
+        }
         bool _isActive;
         public bool IsActive {
             get {
@@ -74,6 +83,12 @@ namespace dxTestSolution.Module.BusinessObjects {
             set {
                 SetPropertyValue(nameof(Priority), ref _priority, value);
             }
+        }
+
+        
+        public Department MyTaskDepartment {
+            get => myTaskDepartment;
+            set => SetPropertyValue(nameof(MyTaskDepartment), ref myTaskDepartment, value);
         }
     }
     public enum Priority {
