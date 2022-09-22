@@ -97,6 +97,15 @@ namespace dxTestSolutionXPO.Tests {
             t11.Company.CompanyName="Company1";
             uow.CommitChanges();
         }
+        public void PopulateForEscaping() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
+            var c0 = ConnectionHelper.AddOrder(uow, "Order0", 44);
+            var c1 = ConnectionHelper.AddOrder(uow, "Order1", 55);
+            c0.like = "TestLike0";
+            c1.like = "TestLike1";
+            uow.CommitChanges();
+        }
         public void PopulateForEnum() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();

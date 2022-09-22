@@ -13,6 +13,7 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
         public override void AfterConstruction() {
             base.AfterConstruction();
         }
+        string _like;
         string defaultCompanyName;
         DateTime orderDate;
         string orderColor;
@@ -111,6 +112,13 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
         public OrderStatusEnum Status {
             get => status;
             set => SetPropertyValue(nameof(Status), ref status, value);
+        }
+
+        
+        
+        public string like {
+            get => _like;
+            set => SetPropertyValue(nameof(like), ref _like, value);
         }
 
     }
