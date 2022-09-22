@@ -143,6 +143,13 @@ namespace dxTestSolutionXPO {
             t.IsAvailable = _isAvailable;
             return t;
         }
+        public static FreeOrderItem AddFreeOrderItem(UnitOfWork _uow, Order _parent, string _subject, int _price ) {
+            var t = new FreeOrderItem(_uow);
+            t.FreeOrderName= _subject;
+            t.ItemPrice = _price;
+            t.Order = _parent;
+            return t;
+        }
         public static Company AddCompany(UnitOfWork _uow, string _name) {
             var c = new Company(_uow);
             c.CompanyName = _name;

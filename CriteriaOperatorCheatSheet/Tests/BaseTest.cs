@@ -111,11 +111,12 @@ namespace dxTestSolutionXPO.Tests {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
             var c0 = ConnectionHelper.AddOrder(uow, "Order0", 44);
-            var t00 = ConnectionHelper.AddOrderItem(uow, c0, "Item0-1", 10, false);
-            var t01 = ConnectionHelper.AddOrderItem(uow, c0, "Item0-2", 20, true);
+            var t00 = ConnectionHelper.AddFreeOrderItem(uow, c0, "FreeItem0-1", 10);
+            var t01 = ConnectionHelper.AddFreeOrderItem(uow, c0, "FreeItem0-2", 20);
             var c1 = ConnectionHelper.AddOrder(uow, "Order1", 55);
-            var t10 = ConnectionHelper.AddOrderItem(uow, c1, "Item1-1", 100, false);
-            var t11 = ConnectionHelper.AddOrderItem(uow, c1, "Item1-2", 200, true);
+            var t10 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-1", 100);
+            var t11 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-2", 200);
+            var t12 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-3", 300);
           
             uow.CommitChanges();
         }

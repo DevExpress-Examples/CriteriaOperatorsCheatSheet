@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="BusinessObjects\Company.cs" />
     <Compile Include="BusinessObjects\ExtendedOrder.cs" />
+    <Compile Include="BusinessObjects\FreeOrderItem.cs" />
     <Compile Include="BusinessObjects\Order.cs" />
     <Compile Include="BusinessObjects\CustomClass.cs" />
     <Compile Include="BusinessObjects\OrderItem.cs" />
