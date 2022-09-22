@@ -121,6 +121,20 @@ namespace dxTestSolutionXPO.Tests {
             uow.CommitChanges();
         }
 
+        public void PopulateForFreeJoinAssociation() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
+            var c0 = ConnectionHelper.AddOrder(uow, "Order0", 44);
+            var t00 = ConnectionHelper.AddOrderItem(uow, c0, "Item0-1", 10);
+            var t01 = ConnectionHelper.AddOrderItem(uow, c0, "Item0-2", 20);
+            var c1 = ConnectionHelper.AddOrder(uow, "Order1", 55);
+            var t10 = ConnectionHelper.AddOrderItem(uow, c1, "Item1-1", 100);
+            var t11 = ConnectionHelper.AddOrderItem(uow, c1, "Item1-2", 200);
+            var t12 = ConnectionHelper.AddOrderItem(uow, c1, "Item1-3", 300);
+
+            uow.CommitChanges();
+        }
+
         public void PopulateForEnum() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();

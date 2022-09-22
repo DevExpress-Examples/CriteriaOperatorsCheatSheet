@@ -50,5 +50,45 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             Assert.AreEqual(1, resCollection.Count);
             Assert.AreEqual("Order1", resCollection[0].OrderName);
         }
+
+
+        [Test]
+        public void Test1_0() {
+            //arrange
+            PopulateForFreeJoinAssociation();
+            var uow = new UnitOfWork();
+            //act
+            CriteriaOperator criterion = CriteriaOperator.Parse("OrderItems.Count()>2");
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            //assert
+            Assert.AreEqual(1, resCollection.Count);
+            Assert.AreEqual("Order1", resCollection[0].OrderName);
+        }
+        [Test]
+        public void Test1_1() {
+            //arrange
+            PopulateForFreeJoinAssociation();
+            var uow = new UnitOfWork();
+            //act
+            var criteriaLeft = new AggregateOperand(nameof(Order.OrderItems), Aggregate.Count);
+            var criterion = new BinaryOperator(criteriaLeft, 2, BinaryOperatorType.Greater);
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            //assert
+            Assert.AreEqual(1, resCollection.Count);
+            Assert.AreEqual("Order1", resCollection[0].OrderName);
+        }
+        //
+        [Test]
+        public void Test1_2() {
+            //arrange
+            PopulateForFreeJoinAssociation();
+            var uow = new UnitOfWork();
+            //act
+            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Count() > 2);
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            //assert
+            Assert.AreEqual(1, resCollection.Count);
+            Assert.AreEqual("Order1", resCollection[0].OrderName);
+        }
     }
 }
