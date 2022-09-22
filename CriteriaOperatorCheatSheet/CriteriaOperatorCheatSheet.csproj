@@ -71,6 +71,7 @@
     <Compile Include="Tests\BinaryOperatorTest.cs" />
     <Compile Include="Tests\ComplexScenarios\EnumTest.cs" />
     <Compile Include="Tests\ComplexScenarios\EscapingTest.cs" />
+    <Compile Include="Tests\ComplexScenarios\FreeJoinTest.cs" />
     <Compile Include="Tests\ComplexScenarios\SpecificObjectTest.cs" />
     <Compile Include="Tests\ComplexScenarios\TempTest.cs" />
     <Compile Include="Tests\ComplexScenarios\ComplexContainsTest.cs" />
