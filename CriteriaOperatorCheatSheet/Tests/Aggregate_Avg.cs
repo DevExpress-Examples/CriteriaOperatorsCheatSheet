@@ -87,9 +87,9 @@ namespace dxTestSolutionXPO {
         public void Task3_SelectFromCollection_2() {
             PopulateSelectFromCollection();
             var uow = new UnitOfWork();
-            var crit = new AggregateOperand(nameof(Order.OrderItems), nameof(OrderItem.ItemPrice) , Aggregate.Avg);
-            var crit2 = new BinaryOperator(crit, 100, BinaryOperatorType.Greater);
-            var res = new XPCollection<Order>(uow, crit2).OrderBy(x => x.OrderName).ToList();
+            var aggrCriterion = new AggregateOperand(nameof(Order.OrderItems), nameof(OrderItem.ItemPrice) , Aggregate.Avg);
+            var resultCriterion = new BinaryOperator(aggrCriterion, 100, BinaryOperatorType.Greater);
+            var res = new XPCollection<Order>(uow, resultCriterion).OrderBy(x => x.OrderName).ToList();
             Assert.AreEqual(2, res.Count);
             Assert.AreEqual("FirstName1", res[0].OrderName);
             Assert.AreEqual("FirstName3", res[1].OrderName);
