@@ -75,7 +75,8 @@ namespace dxTestSolutionXPO {
         public void Task3_SelectFromCollection_1() {
             PopulateSelectFromCollection();
             var uow = new UnitOfWork();
-            var crit = CriteriaOperator.Parse("OrderItems.Avg(ItemPrice)>100");
+            var crit = 
+                CriteriaOperator.Parse("OrderItems.Avg(ItemPrice)>100");
             var res = new XPCollection<Order>(uow, crit).OrderBy(x=>x.OrderName).ToList();
             Assert.AreEqual(2, res.Count);
             Assert.AreEqual("FirstName1", res[0].OrderName);
