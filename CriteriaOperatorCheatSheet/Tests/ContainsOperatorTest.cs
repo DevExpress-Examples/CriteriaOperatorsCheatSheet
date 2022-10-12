@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForMaxMinTest();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("[OrderItems][ItemPrice = ?]", 44);
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("[OrderItems][ItemPrice = ?]", 44);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -31,7 +32,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForMaxMinTest();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = new ContainsOperator(nameof(Order.OrderItems), new BinaryOperator("ItemPrice", 44));
+            CriteriaOperator criterion = 
+                new ContainsOperator(nameof(Order.OrderItems), new BinaryOperator("ItemPrice", 44));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -45,7 +47,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForMaxMinTest();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Any(oi => oi.ItemPrice == 44));
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Any(oi => oi.ItemPrice == 44));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;

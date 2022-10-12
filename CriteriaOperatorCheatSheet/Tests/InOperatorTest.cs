@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForGroupOperator();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("OrderName In ('Order2', 'Order3','Description5')");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("OrderName In ('Order2', 'Order3','Description5')");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
@@ -34,7 +35,8 @@ namespace dxTestSolutionXPO.Tests {
             var uow = new UnitOfWork();
             //act
 
-            CriteriaOperator criterion = new InOperator("OrderName", new string[] { "Order2", "Order3", "Description5" });
+            CriteriaOperator criterion = 
+                new InOperator("OrderName", new string[] { "Order2", "Order3", "Description5" });
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
@@ -50,7 +52,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForGroupOperator();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order, bool>(o => new string[] { "Order2", "Order3", "Description5" }.Contains(o.OrderName));
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order, bool>(o => new string[] { "Order2", "Order3", "Description5" }.Contains(o.OrderName));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();

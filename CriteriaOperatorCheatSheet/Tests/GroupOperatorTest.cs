@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForGroupOperator();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("Price=20 or OrderName='Order3'");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("Price=20 or OrderName='Order3'");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
@@ -33,8 +34,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForGroupOperator();
             var uow = new UnitOfWork();
             //act
-            BinaryOperator operator1 = new BinaryOperator(nameof(Order.Price), 20);
-            BinaryOperator operator2 = new BinaryOperator(nameof(Order.OrderName), "Order3");
+            var operator1 = new BinaryOperator(nameof(Order.Price), 20);
+            var operator2 = new BinaryOperator(nameof(Order.OrderName), "Order3");
             CriteriaOperator criterion = GroupOperator.Or(operator1, operator2);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
@@ -51,7 +52,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForGroupOperator();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => o.Price==20 || o.OrderName == "Order3");
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(o => o.Price==20 || o.OrderName == "Order3");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();

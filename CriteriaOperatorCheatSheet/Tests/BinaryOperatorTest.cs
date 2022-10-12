@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForBinary();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("Price>=50");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("Price>=50");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -30,7 +31,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForBinary();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = new BinaryOperator(nameof(Order.Price), 50, BinaryOperatorType.GreaterOrEqual);
+            CriteriaOperator criterion = 
+                new BinaryOperator(nameof(Order.Price), 50, BinaryOperatorType.GreaterOrEqual);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -43,7 +45,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForBinary();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => o.Price >= 50);
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(o => o.Price >= 50);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
