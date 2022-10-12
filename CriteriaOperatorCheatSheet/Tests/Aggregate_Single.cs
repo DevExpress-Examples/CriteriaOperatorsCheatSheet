@@ -112,9 +112,9 @@ namespace dxTestSolutionXPO.Tests {
             PopulateDiffItems();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = new AggregateOperand(new OperandProperty(nameof(Order.OrderItems)), null, Aggregate.Exists, new BinaryOperator(nameof(OrderItem.ItemPrice), 456));
-            CriteriaOperator joinCriterion = new JoinOperand(nameof(Order), criterion, Aggregate.Single, new OperandProperty("This"));
-            CriteriaOperator resultCriterion = new BinaryOperator(nameof(OrderItem.Order), joinCriterion);
+            var criterion = new AggregateOperand(new OperandProperty(nameof(Order.OrderItems)), null, Aggregate.Exists, new BinaryOperator(nameof(OrderItem.ItemPrice), 456));
+            var joinCriterion = new JoinOperand(nameof(Order), criterion, Aggregate.Single, new OperandProperty("This"));
+            var resultCriterion = new BinaryOperator(nameof(OrderItem.Order), joinCriterion);
             var result3 = new XPCollection<OrderItem>(uow, resultCriterion);
             //assert
             Assert.AreEqual(4, result3.Count);
