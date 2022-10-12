@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForGroupOperator();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("Not Price Between (20,30)");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("Not Price Between (20,30)");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
@@ -34,7 +35,8 @@ namespace dxTestSolutionXPO.Tests {
             var uow = new UnitOfWork();
             //act
 
-            CriteriaOperator criterion = new UnaryOperator(UnaryOperatorType.Not, new BetweenOperator(nameof(Order.Price), 20, 30));
+            CriteriaOperator criterion = 
+                new UnaryOperator(UnaryOperatorType.Not, new BetweenOperator(nameof(Order.Price), 20, 30));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
@@ -50,7 +52,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForGroupOperator();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => !(o.Price >= 20 && o.Price <= 30));
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(o => !(o.Price >= 20 && o.Price <= 30));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
@@ -67,7 +70,8 @@ namespace dxTestSolutionXPO.Tests {
             ForUnary();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("Order is null");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("Order is null");
             var xpColl = new XPCollection<OrderItem>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.ToList();
@@ -83,7 +87,8 @@ namespace dxTestSolutionXPO.Tests {
             var uow = new UnitOfWork();
             //act
 
-            CriteriaOperator criterion = new UnaryOperator(UnaryOperatorType.IsNull, new OperandProperty(nameof(OrderItem.Order)));
+            CriteriaOperator criterion = 
+                new UnaryOperator(UnaryOperatorType.IsNull, new OperandProperty(nameof(OrderItem.Order)));
             var xpColl = new XPCollection<OrderItem>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.ToList();
@@ -99,7 +104,8 @@ namespace dxTestSolutionXPO.Tests {
             ForUnary();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<OrderItem>(oi => oi.Order == null);
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<OrderItem>(oi => oi.Order == null);
             var xpColl = new XPCollection<OrderItem>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.ToList();
