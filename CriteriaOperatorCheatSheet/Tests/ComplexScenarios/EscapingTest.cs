@@ -77,5 +77,18 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             //assert
             Assert.AreEqual(1, resCollection.Count);
         }
+
+        [Test]
+        public void Test0_2_1() {
+            //arrange
+            PopulateForEscaping();
+            var uow = new UnitOfWork();
+            //act
+            CriteriaOperator criterion =
+                CriteriaOperator.Parse("@like like '%ike0'");
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            //assert
+            Assert.AreEqual(1, resCollection.Count);
+        }
     }
 }
