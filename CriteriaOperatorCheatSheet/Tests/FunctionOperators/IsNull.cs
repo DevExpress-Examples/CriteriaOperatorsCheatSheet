@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests {
             ForUnary();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("IsNull(Order)");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("IsNull(Order)");
             var xpColl = new XPCollection<OrderItem>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -31,7 +32,8 @@ namespace dxTestSolutionXPO.Tests {
             ForUnary();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = new FunctionOperator(FunctionOperatorType.IsNull, new OperandProperty(nameof(OrderItem.Order)));
+            CriteriaOperator criterion = 
+                new FunctionOperator(FunctionOperatorType.IsNull, new OperandProperty(nameof(OrderItem.Order)));
             var xpColl = new XPCollection<OrderItem>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -45,7 +47,8 @@ namespace dxTestSolutionXPO.Tests {
             ForUnary();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<OrderItem>(oi => oi.Order == null);
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<OrderItem>(oi => oi.Order == null);
             var xpColl = new XPCollection<OrderItem>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -61,7 +64,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForIsNull();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("'WrongValue'=IsNull(Description,'WrongValue')");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("'WrongValue'=IsNull(Description,'WrongValue')");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resultColl=xpColl.OrderBy(x=>x.OrderName).ToList();
@@ -77,8 +81,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForIsNull();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator isNullcriterion = new FunctionOperator(FunctionOperatorType.IsNull, new OperandProperty(nameof(Order.Description)), new ConstantValue("WrongValue"));
-            CriteriaOperator criterion = new BinaryOperator(isNullcriterion, "WrongValue", BinaryOperatorType.Equal);
+            var isNullCriterion = new FunctionOperator(FunctionOperatorType.IsNull, new OperandProperty(nameof(Order.Description)), new ConstantValue("WrongValue"));
+            var criterion = new BinaryOperator(isNullCriterion, "WrongValue", BinaryOperatorType.Equal);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resultColl = xpColl.OrderBy(x => x.OrderName).ToList();
@@ -94,7 +98,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForIsNull();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(oi => "WrongValue" == (oi.Description ?? "WrongValue"));
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(oi => "WrongValue" == (oi.Description ?? "WrongValue"));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resultColl = xpColl.OrderBy(x => x.OrderName).ToList();

@@ -16,7 +16,8 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulatePlainCollection();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("EndsWith(OrderName,'1')");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("EndsWith(OrderName,'1')");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -30,7 +31,8 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulatePlainCollection();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = new FunctionOperator(FunctionOperatorType.EndsWith, new OperandProperty(nameof(Order.OrderName)), new ConstantValue("1"));
+            CriteriaOperator criterion = 
+                new FunctionOperator(FunctionOperatorType.EndsWith, new OperandProperty(nameof(Order.OrderName)), new ConstantValue("1"));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -44,7 +46,8 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulatePlainCollection();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(oi => oi.OrderName.EndsWith("1"));
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(oi => oi.OrderName.EndsWith("1"));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -60,7 +63,8 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulatePlainCollection();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("ToStr(Price)='20'");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("ToStr(Price)='20'");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -74,8 +78,8 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulatePlainCollection();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator strCriterion = new FunctionOperator(FunctionOperatorType.ToStr, new OperandProperty(nameof(Order.Price)));
-            CriteriaOperator criterion = new BinaryOperator(strCriterion, new ConstantValue("20"), BinaryOperatorType.Equal);
+            var strCriterion = new FunctionOperator(FunctionOperatorType.ToStr, new OperandProperty(nameof(Order.Price)));
+            var criterion = new BinaryOperator(strCriterion, new ConstantValue("20"), BinaryOperatorType.Equal);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -89,7 +93,8 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulatePlainCollection();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(oi => oi.Price.ToString() == "20");
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(oi => oi.Price.ToString() == "20");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;

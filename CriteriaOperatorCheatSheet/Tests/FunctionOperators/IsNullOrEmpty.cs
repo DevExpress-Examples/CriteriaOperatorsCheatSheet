@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForIsNullOrEmpty();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("IsNullOrEmpty(Description)");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("IsNullOrEmpty(Description)");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -31,7 +32,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForIsNullOrEmpty();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = new FunctionOperator(FunctionOperatorType.IsNullOrEmpty, new CriteriaOperator[] { new OperandProperty(nameof(Order.Description)) });
+            CriteriaOperator criterion =
+                new FunctionOperator(FunctionOperatorType.IsNullOrEmpty, new CriteriaOperator[] { new OperandProperty(nameof(Order.Description)) });
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -45,7 +47,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForIsNullOrEmpty();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => string.IsNullOrEmpty(o.Description));
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(o => string.IsNullOrEmpty(o.Description));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;

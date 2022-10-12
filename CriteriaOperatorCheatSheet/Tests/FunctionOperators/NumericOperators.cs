@@ -18,7 +18,8 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulateForNumeric();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("Abs(Price)>10");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("Abs(Price)>10");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
@@ -34,8 +35,8 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulateForNumeric();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator funccriterion = new FunctionOperator(FunctionOperatorType.Abs, new OperandProperty(nameof(Order.Price)));
-            CriteriaOperator criterion = new BinaryOperator(funccriterion, new ConstantValue(10), BinaryOperatorType.Greater);
+            var functOperator = new FunctionOperator(FunctionOperatorType.Abs, new OperandProperty(nameof(Order.Price)));
+            var criterion = new BinaryOperator(functOperator, new ConstantValue(10), BinaryOperatorType.Greater);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
@@ -51,7 +52,8 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulateForNumeric();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => Math.Abs(o.Price)>10);
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(o => Math.Abs(o.Price)>10);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
