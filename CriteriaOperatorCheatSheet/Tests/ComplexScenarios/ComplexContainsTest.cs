@@ -64,7 +64,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForComplex();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("[OrderItems][Company.CompanyName = 'Company1']");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("[OrderItems][Company.CompanyName = 'Company1']");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -89,7 +90,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForComplex();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Any(oi => oi.Company.CompanyName == "Company1"));
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Any(oi => oi.Company.CompanyName == "Company1"));
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
