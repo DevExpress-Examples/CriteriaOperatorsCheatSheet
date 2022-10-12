@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForMaxMin();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("OrderItems.Max(ItemPrice)");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("OrderItems.Max(ItemPrice)");
             CriteriaOperator filterParentCollection = new BinaryOperator(nameof(Order.OrderName), "FirstName0");
             var result3 = uow.Evaluate<Order>(criterion, filterParentCollection);
             //assert
@@ -29,7 +30,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForMaxMin();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = new AggregateOperand(new OperandProperty(nameof(Order.OrderItems)), new OperandProperty(nameof(OrderItem.ItemPrice)), Aggregate.Max, null);
+            CriteriaOperator criterion = 
+                new AggregateOperand(new OperandProperty(nameof(Order.OrderItems)), new OperandProperty(nameof(OrderItem.ItemPrice)), Aggregate.Max, null);
             CriteriaOperator filterParentCollection = new BinaryOperator(nameof(Order.OrderName), "FirstName0");
             var result3 = uow.Evaluate<Order>(criterion, filterParentCollection);
             //assert
@@ -41,7 +43,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForMaxMin();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order, int>(o => o.OrderItems.Max(oi => oi.ItemPrice));
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order, int>(o => o.OrderItems.Max(oi => oi.ItemPrice));
             CriteriaOperator filterParentCollection = new BinaryOperator(nameof(Order.OrderName), "FirstName0");
             var result3 = uow.Evaluate<Order>(criterion, filterParentCollection);
             //assert
@@ -54,7 +57,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForMaxMin();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("[OrderItems][IsAvailable=True].Max(ItemPrice)");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("[OrderItems][IsAvailable=True].Max(ItemPrice)");
             CriteriaOperator filterParentCollection = new BinaryOperator(nameof(Order.OrderName), "FirstName0");
             var result3 = uow.Evaluate<Order>(criterion, filterParentCollection);
             //assert
@@ -66,7 +70,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForMaxMin();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = new AggregateOperand(new OperandProperty(nameof(Order.OrderItems)), new OperandProperty(nameof(OrderItem.ItemPrice)), Aggregate.Max, new BinaryOperator(nameof(OrderItem.IsAvailable),true));
+            CriteriaOperator criterion = 
+                new AggregateOperand(new OperandProperty(nameof(Order.OrderItems)), new OperandProperty(nameof(OrderItem.ItemPrice)), Aggregate.Max, new BinaryOperator(nameof(OrderItem.IsAvailable),true));
             CriteriaOperator filterParentCollection = new BinaryOperator(nameof(Order.OrderName), "FirstName0");
             var result3 = uow.Evaluate<Order>(criterion, filterParentCollection);
             //assert
@@ -78,7 +83,8 @@ namespace dxTestSolutionXPO.Tests {
             PopulateSimpleCollectionForMaxMin();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order, int>(o => o.OrderItems.Where(oi => oi.IsAvailable == true).Max(oi => oi.ItemPrice)); ;
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order, int>(o => o.OrderItems.Where(oi => oi.IsAvailable == true).Max(oi => oi.ItemPrice)); ;
             CriteriaOperator filterParentCollection = new BinaryOperator(nameof(Order.OrderName), "FirstName0");
             var result3 = uow.Evaluate<Order>(criterion, filterParentCollection);
             //assert
