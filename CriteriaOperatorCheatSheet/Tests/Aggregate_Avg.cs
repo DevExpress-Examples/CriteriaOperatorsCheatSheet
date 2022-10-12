@@ -15,7 +15,8 @@ namespace dxTestSolutionXPO {
         [Test]
         public void Task1_PlainCollection_1() {
             PopulatePlainCollection();
-            CriteriaOperator criterion = CriteriaOperator.Parse("Avg(Price)");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("Avg(Price)");
             var uow = new UnitOfWork();
             var result = uow.Evaluate<Order>(criterion, null);
             Assert.AreEqual(15, result);
@@ -23,7 +24,8 @@ namespace dxTestSolutionXPO {
         [Test]
         public void Task1_PlainCollection_2() {
             PopulatePlainCollection();
-            CriteriaOperator criterion = new AggregateOperand(null, nameof(Order.Price), Aggregate.Avg);
+            CriteriaOperator criterion = 
+                new AggregateOperand(null, nameof(Order.Price), Aggregate.Avg);
             var uow = new UnitOfWork();
             var res = uow.Evaluate<Order>(criterion, null);
             Assert.AreEqual(15, res);
@@ -31,7 +33,8 @@ namespace dxTestSolutionXPO {
         [Test]
         public void Task1_PlainCollection_3() {
             PopulatePlainCollection();
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order, double>(x => FromLambdaFunctions.TopLevelAggregate<Order>().Average(c => c.Price));
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order, double>(x => FromLambdaFunctions.TopLevelAggregate<Order>().Average(c => c.Price));
             var uow = new UnitOfWork();
             var res = uow.Evaluate<Order>(criterion, null);
             Assert.AreEqual(15, res);
@@ -39,7 +42,8 @@ namespace dxTestSolutionXPO {
         [Test]
         public void Task2_PlainCollection_Crit_1() {
             PopulateСollectionWithActive();
-            var crit = CriteriaOperator.Parse("Avg(Price)");
+            var crit = 
+                CriteriaOperator.Parse("Avg(Price)");
             var crit2 = CriteriaOperator.Parse("IsActive=true");
             var uow = new UnitOfWork();
             var res = uow.Evaluate<Order>(crit, crit2);
@@ -94,7 +98,8 @@ namespace dxTestSolutionXPO {
         public void Task3_SelectFromCollection_3() {
             PopulateSelectFromCollection();
             var uow = new UnitOfWork();
-            var crit = CriteriaOperator.FromLambda<Order>(x => x.OrderItems.Average(t => t.ItemPrice) > 100);
+            var crit = 
+                CriteriaOperator.FromLambda<Order>(x => x.OrderItems.Average(t => t.ItemPrice) > 100);
             var res = new XPCollection<Order>(uow, crit).OrderBy(x=>x.OrderName).ToList();
             Assert.AreEqual(2, res.Count);
             Assert.AreEqual("FirstName1", res[0].OrderName);
