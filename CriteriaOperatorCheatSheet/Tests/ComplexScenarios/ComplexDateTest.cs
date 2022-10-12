@@ -57,7 +57,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var uow = new UnitOfWork();
             //act
             var targetDate = new DateTime(2022, 8, 9);
-            var criterion = CriteriaOperator.FromLambda<Order>(o => o.OrderDate >= targetDate.AddDays(-14) && o.OrderDate < targetDate);
+            var criterion = 
+                CriteriaOperator.FromLambda<Order>(o => o.OrderDate >= targetDate.AddDays(-14) && o.OrderDate < targetDate);
 
             var resultCollection = new XPCollection<Order>(uow, criterion);
             var filteredResult = resultCollection.OrderBy(x => x.OrderName).ToList();
