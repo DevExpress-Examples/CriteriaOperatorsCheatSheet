@@ -18,7 +18,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForEscaping();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("OrderName like '%der1'");
+            CriteriaOperator criterion =
+                CriteriaOperator.Parse("OrderName like '%der1'");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -29,7 +30,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForEscaping();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("[OrderName] like '%der1'");
+            CriteriaOperator criterion =
+                CriteriaOperator.Parse("[OrderName] like '%der1'");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -41,7 +43,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForEscaping();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("[like] like '%ike0'");
+            CriteriaOperator criterion =
+                CriteriaOperator.Parse("[like] like '%ike0'");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -56,7 +59,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             //act
             Assert.Throws<CriteriaParserException>(
             () => {
-                CriteriaOperator criterion = CriteriaOperator.Parse("like like '%ike0'");
+                CriteriaOperator criterion =
+                CriteriaOperator.Parse("like like '%ike0'");
             }
             );
         }
@@ -67,7 +71,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForEscaping();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => o.like.Contains("ike0"));
+            CriteriaOperator criterion =
+                CriteriaOperator.FromLambda<Order>(o => o.like.Contains("ike0"));
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);

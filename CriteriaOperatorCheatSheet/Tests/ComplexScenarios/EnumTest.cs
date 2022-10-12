@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForEnum();
             var uow = new UnitOfWork();
             //act
-            var criterion = CriteriaOperator.Parse("Status=##Enum#dxTestSolutionXPO.Module.BusinessObjects.OrderStatusEnum,Delayed#");
+            var criterion = 
+                CriteriaOperator.Parse("Status=##Enum#dxTestSolutionXPO.Module.BusinessObjects.OrderStatusEnum,Delayed#");
             var resultCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual("order1", resultCollection[0].OrderName);
@@ -29,7 +30,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForEnum();
             var uow = new UnitOfWork();
             //act
-            var criterion = new BinaryOperator(nameof(Order.Status), OrderStatusEnum.Delayed);
+            var criterion = 
+                new BinaryOperator(nameof(Order.Status), OrderStatusEnum.Delayed);
             var resultCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual("order1", resultCollection[0].OrderName);
@@ -41,7 +43,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForEnum();
             var uow = new UnitOfWork();
             //act
-            var criterion = CriteriaOperator.FromLambda<Order>(x => x.Status == OrderStatusEnum.Delayed);
+            var criterion = 
+                CriteriaOperator.FromLambda<Order>(x => x.Status == OrderStatusEnum.Delayed);
             var resultCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual("order1", resultCollection[0].OrderName);

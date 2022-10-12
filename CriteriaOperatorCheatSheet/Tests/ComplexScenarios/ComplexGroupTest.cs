@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios.cs {
             PopulateForComplex();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("Order.OrderName == 'Order1' AND  !IsNull(Company)");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("Order.OrderName == 'Order1' AND  !IsNull(Company)");
             var resCollection = new XPCollection<OrderItem>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -29,7 +30,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios.cs {
             PopulateForComplex();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("Order.OrderName == 'Order1' AND Not IsNull(Company)");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("Order.OrderName == 'Order1' AND Not IsNull(Company)");
             var resCollection = new XPCollection<OrderItem>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -41,7 +43,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios.cs {
             PopulateForComplex();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("Order.OrderName == 'Order1' AND  Company is not null");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("Order.OrderName == 'Order1' AND  Company is not null");
             var resCollection = new XPCollection<OrderItem>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -68,7 +71,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios.cs {
             PopulateForComplex();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<OrderItem>(oi => oi.Order.OrderName == "Order1" && oi.Company != null);
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<OrderItem>(oi => oi.Order.OrderName == "Order1" && oi.Company != null);
             var resCollection = new XPCollection<OrderItem>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);

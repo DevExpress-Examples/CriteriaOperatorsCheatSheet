@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForComplexParentRelating();
             var uow = new UnitOfWork();
             //act
-            var criterion = CriteriaOperator.Parse("[OrderItems][[^.OrderDate] == RegistrationDate]");
+            var criterion = 
+                CriteriaOperator.Parse("[OrderItems][[^.OrderDate] == RegistrationDate]");
             var resultCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(new DateTime(2022, 8, 3), resultCollection[0].OrderDate);
@@ -44,7 +45,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForComplexParentRelating();
             var uow = new UnitOfWork();
             //act
-            var criterion = CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Any(oi => oi.RegistrationDate == o.OrderDate));
+            var criterion = 
+                CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Any(oi => oi.RegistrationDate == o.OrderDate));
             var resultCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(new DateTime(2022, 8, 3), resultCollection[0].OrderDate);

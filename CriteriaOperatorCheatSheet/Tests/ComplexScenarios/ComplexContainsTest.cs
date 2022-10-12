@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateSimpleCollectionForMaxMinTest();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("[OrderItems][ItemPrice = ?] and Price = ?", 10, 99);
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("[OrderItems][ItemPrice = ?] and Price = ?", 10, 99);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
@@ -47,7 +48,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateSimpleCollectionForMaxMinTest();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Any(oi => oi.ItemPrice == 10) && o.Price == 99);
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Any(oi => oi.ItemPrice == 10) && o.Price == 99);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;

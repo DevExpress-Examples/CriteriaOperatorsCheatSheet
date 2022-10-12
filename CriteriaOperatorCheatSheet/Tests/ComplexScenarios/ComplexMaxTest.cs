@@ -18,7 +18,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForComplexMax();
             var uow = new UnitOfWork();
             //act
-            var criterion = CriteriaOperator.Parse("OrderDate ==[<Order>][OrderColor=='red'].Max(OrderDate)");
+            var criterion = 
+                CriteriaOperator.Parse("OrderDate ==[<Order>][OrderColor=='red'].Max(OrderDate)");
             var resultCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(new DateTime(2022, 8, 2), resultCollection[0].OrderDate);
@@ -44,7 +45,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForComplexMax();
             var uow = new UnitOfWork();
             //act
-            var criterion = CriteriaOperator.FromLambda<Order>(o => o.OrderDate == FromLambdaFunctions.FreeJoin<Order>(selectOrder => selectOrder.OrderColor == "red").Max(resultOrder => resultOrder.OrderDate));
+            var criterion = 
+                CriteriaOperator.FromLambda<Order>(o => o.OrderDate == FromLambdaFunctions.FreeJoin<Order>(selectOrder => selectOrder.OrderColor == "red").Max(resultOrder => resultOrder.OrderDate));
             var resultCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(new DateTime(2022, 8, 2), resultCollection[0].OrderDate);

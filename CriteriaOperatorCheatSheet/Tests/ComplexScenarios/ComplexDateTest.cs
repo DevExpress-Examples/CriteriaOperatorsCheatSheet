@@ -18,7 +18,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForComplexDateTwoWeek();
             var uow = new UnitOfWork();
             //act
-            var criterion = CriteriaOperator.Parse("OrderDate >= AddDays(#2022-08-09#, -14)  && OrderDate < #2022-08-09#");
+            var criterion = 
+                CriteriaOperator.Parse("OrderDate >= AddDays(#2022-08-09#, -14)  && OrderDate < #2022-08-09#");
             var resultCollection = new XPCollection<Order>(uow, criterion);
             var filteredResult = resultCollection.OrderBy(x => x.OrderName).ToList();
             //assert

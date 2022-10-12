@@ -17,7 +17,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForFreeJoin();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("[<FreeOrderItem>][^.Oid = Order.Oid].Count() > 2");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("[<FreeOrderItem>][^.Oid = Order.Oid].Count() > 2");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -44,7 +45,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForFreeJoin();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => FromLambdaFunctions.FreeJoin<FreeOrderItem>(oi => oi.Order.Oid == o.Oid).Count()>2);
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(o => FromLambdaFunctions.FreeJoin<FreeOrderItem>(oi => oi.Order.Oid == o.Oid).Count()>2);
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -58,7 +60,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForFreeJoinAssociation();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.Parse("OrderItems.Count()>2");
+            CriteriaOperator criterion = 
+                CriteriaOperator.Parse("OrderItems.Count()>2");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -84,7 +87,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForFreeJoinAssociation();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Count() > 2);
+            CriteriaOperator criterion = 
+                CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Count() > 2);
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);

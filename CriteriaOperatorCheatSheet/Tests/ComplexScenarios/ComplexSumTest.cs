@@ -18,7 +18,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForComplexSum();
             var uow = new UnitOfWork();
             //act
-            var criterion = CriteriaOperator.Parse("OrderItems.Sum(Positions.Sum(PositionCount))==10");
+            var criterion = 
+                CriteriaOperator.Parse("OrderItems.Sum(Positions.Sum(PositionCount))==10");
             var resultCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual("order0", resultCollection[0].OrderName);
@@ -44,7 +45,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForComplexSum();
             var uow = new UnitOfWork();
             //act
-            var criterion = CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Sum(oi => oi.Positions.Sum(p => p.PositionCount)) == 10);
+            var criterion = 
+                CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Sum(oi => oi.Positions.Sum(p => p.PositionCount)) == 10);
             var resultCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual("order0", resultCollection[0].OrderName);
