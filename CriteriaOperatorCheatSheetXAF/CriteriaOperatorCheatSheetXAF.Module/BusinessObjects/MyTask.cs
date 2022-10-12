@@ -40,7 +40,7 @@ namespace dxTestSolution.Module.BusinessObjects {
         }
         Contact _assignedTo;
         [Association("Contact-Tasks")]
-        [DataSourceCriteria("Owner==CurrentUserId()")]
+        [DataSourceCriteria("Owner.Oid==CurrentUserId()")]
         public Contact AssignedTo {
             get { return _assignedTo; }
             set { SetPropertyValue(nameof(AssignedTo), ref _assignedTo, value); }
@@ -49,7 +49,7 @@ namespace dxTestSolution.Module.BusinessObjects {
 
 
 
-        [DataSourceCriteria("IsCurrentUserId(Owner)")]
+        [DataSourceCriteria("IsCurrentUserId(Owner.Oid)")]
         public Contact NewContact1 {
             get => newContact1;
             set => SetPropertyValue(nameof(NewContact1), ref newContact1, value);
@@ -61,7 +61,7 @@ namespace dxTestSolution.Module.BusinessObjects {
             set => SetPropertyValue(nameof(NewContact2), ref newContact2, value);
         }
 
-        [DataSourceCriteria("ContactDepartment = '@This.MyTaskDepartment'")]
+        [DataSourceCriteria("ContactDepartment = '@This.MyTaskDepartment.Oid'")]
         public Contact NewContact3 {
             get => newContact3;
             set => SetPropertyValue(nameof(NewContact3), ref newContact3, value);
