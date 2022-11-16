@@ -16,10 +16,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.ExpressApp.Blazor" Version="22.1.5" />
-    <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="22.1.5" />
-    <PackageReference Include="DevExpress.ExpressApp.Security.Xpo" Version="22.1.5" />
-    <PackageReference Include="DevExpress.ExpressApp.Validation.Blazor" Version="22.1.5" />
+    <PackageReference Include="DevExpress.ExpressApp.Blazor" Version="21.2.11" />
+    <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="21.2.11" />
+    <PackageReference Include="DevExpress.ExpressApp.Security.Xpo" Version="21.2.11" />
+    <PackageReference Include="DevExpress.ExpressApp.Validation.Blazor" Version="21.2.11" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CriteriaOperatorCheatSheetXAF.Module\CriteriaOperatorCheatSheetXAF.Module.csproj" />
