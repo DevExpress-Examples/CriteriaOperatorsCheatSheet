@@ -46,7 +46,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var uow = new UnitOfWork();
             //act
             CriteriaOperator criterion =
-                //Although there is no LINQ expression that generates the BetweenOperator you can solve this taks using the following expression
+                //Although there is no LINQ expression that generates the IsExactType criterion you can solve this task using the following expression
                 CriteriaOperator.FromLambda<Order>(o => o is ExtendedOrder);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
