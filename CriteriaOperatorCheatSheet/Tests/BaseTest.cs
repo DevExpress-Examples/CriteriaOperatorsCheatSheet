@@ -15,7 +15,13 @@ namespace dxTestSolutionXPO.Tests {
             ConnectionHelper.AddOrder(uow, "FirstName1", 20);
             uow.CommitChanges();
         }
-
+        public void PopulatePlainCollectionForConcat() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
+            ConnectionHelper.AddOrder(uow, "TestValue", 10);
+            ConnectionHelper.AddOrder(uow, "FirstName1", 20);
+            uow.CommitChanges();
+        }
         public void PopulateForNumeric() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
