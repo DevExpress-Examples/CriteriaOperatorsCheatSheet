@@ -85,13 +85,22 @@ namespace dxTestSolutionXPO {
             c.Price = _price;
             return c;
         }
-
+        public static Order AddOrderWithOwner(UnitOfWork _uow, string _firstName, string _owner) {
+            var c = AddOrder(_uow, _firstName);
+            c.OrderOwnerName = _owner;
+            return c;
+        }
         public static Order AddOrder(UnitOfWork _uow, string _firstName, string _description) {
             var c = AddOrder(_uow, _firstName);
             c.Description = _description;
             return c;
         }
-
+        public static Order AddOrder(UnitOfWork _uow, string _firstName, string _ownerName,DateTime _date) {
+            var c = AddOrder(_uow, _firstName);
+            c.OrderOwnerName= _ownerName; 
+            c.OrderDate= _date; 
+            return c;
+        }
         internal static Order AddOrder(UnitOfWork _uow, string _firstName, int _price) {
             var c = AddOrder(_uow, _firstName);
             c.Price = _price;
@@ -148,6 +157,17 @@ namespace dxTestSolutionXPO {
             t.FreeOrderName= _subject;
             t.ItemPrice = _price;
             t.Order = _parent;
+            return t;
+        }
+     
+        public static FreeOrderItem AddFreeOrderItem(UnitOfWork _uow, Order _parent, string _subject, int _price,DateTime _date) {
+            var t = AddFreeOrderItem(_uow, _parent, _subject, _price);
+            t.FreeOrderDate = _date;
+            return t;
+        }
+        public static FreeOrderItem AddFreeOrderItem(UnitOfWork _uow, Order _parent, string _subject, int _price, DateTime _date, string _owner) {
+            var t = AddFreeOrderItem(_uow, _parent, _subject, _price,_date);
+            t.FreeOrderOwnerName = _owner;
             return t;
         }
         public static Company AddCompany(UnitOfWork _uow, string _name) {
