@@ -3,11 +3,13 @@ using DevExpress.Xpo.Metadata;
 using dxTestSolutionXPO.Module.BusinessObjects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace dxTestSolutionXPO.Module.BusinessObjects {
+    [DebuggerDisplay("FreeOrderName: {FreeOrderName}")]
     public class FreeOrderItem: XPObject {
         public FreeOrderItem(Session session) : base(session) {
 

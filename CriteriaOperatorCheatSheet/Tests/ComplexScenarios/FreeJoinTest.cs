@@ -136,5 +136,52 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             Assert.AreEqual(1, resCollection.Count);
             Assert.AreEqual("Order1", resCollection[0].OrderName);
         }
+
+        [Test]
+        public void Test3_0() {
+            //arrange
+            PopulateForFreeJoin_User();
+            var uow = new UnitOfWork();
+            //act
+            CriteriaOperator criterion =
+                CriteriaOperator.Parse("FreeOrderDate = [<FreeOrderItem>][^.FreeOrderOwnerName = FreeOrderOwnerName].Max(FreeOrderDate)");
+            var resCollection = new XPCollection<FreeOrderItem>(uow, criterion);
+            var resCollection2 = resCollection.OrderBy(x => x.FreeOrderName).ToList();
+            //assert
+            Assert.AreEqual(2, resCollection.Count);
+            Assert.AreEqual("FreeItem0-1", resCollection2[0].FreeOrderName);
+            Assert.AreEqual("FreeItem1-2", resCollection2[1].FreeOrderName);
+        }
+        [Test]
+        public void Test3_1() {
+            //arrange
+            PopulateForFreeJoin_User();
+            var uow = new UnitOfWork();
+            //act
+            var criteriaCondition = new BinaryOperator(new OperandProperty("^.FreeOrderOwnerName"), new OperandProperty(nameof(FreeOrderItem.FreeOrderOwnerName)), BinaryOperatorType.Equal);
+            var criteriaRight = new JoinOperand(nameof(FreeOrderItem), criteriaCondition, Aggregate.Max, new OperandProperty(nameof(FreeOrderItem.FreeOrderDate)));
+            CriteriaOperator criterion = new BinaryOperator(new OperandProperty(nameof(FreeOrderItem.FreeOrderDate)), criteriaRight, BinaryOperatorType.Equal);
+            var resCollection = new XPCollection<FreeOrderItem>(uow, criterion);
+            var resCollection2 = resCollection.OrderBy(x => x.FreeOrderName).ToList();
+            //assert
+            Assert.AreEqual(2, resCollection.Count);
+            Assert.AreEqual("FreeItem0-1", resCollection2[0].FreeOrderName);
+            Assert.AreEqual("FreeItem1-2", resCollection2[1].FreeOrderName);
+        }
+        [Test]
+        public void Test3_2() {
+            //arrange
+            PopulateForFreeJoin_User();
+            var uow = new UnitOfWork();
+            //act
+            CriteriaOperator criterion =
+                CriteriaOperator.FromLambda<FreeOrderItem>(fParent => fParent.FreeOrderDate == FromLambdaFunctions.FreeJoin<FreeOrderItem>(fChild => fChild.FreeOrderOwnerName == fParent.FreeOrderOwnerName).Max(f => f.FreeOrderDate));
+            var resCollection = new XPCollection<FreeOrderItem>(uow, criterion);
+            var resCollection2 = resCollection.OrderBy(x => x.FreeOrderName).ToList();
+            //assert
+            Assert.AreEqual(2, resCollection.Count);
+            Assert.AreEqual("FreeItem0-1", resCollection2[0].FreeOrderName);
+            Assert.AreEqual("FreeItem1-2", resCollection2[1].FreeOrderName);
+        }
     }
 }
