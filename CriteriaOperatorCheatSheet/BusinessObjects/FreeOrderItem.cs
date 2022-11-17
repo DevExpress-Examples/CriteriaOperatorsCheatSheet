@@ -12,6 +12,9 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
         public FreeOrderItem(Session session) : base(session) {
 
         }
+        string freeOrderOwnerName;
+        DateTime orderDate;
+        double propertyName;
         string freeOrderName;
         Order _order;
 
@@ -25,7 +28,7 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
         }
         int _itemPrice;
 
-     
+
 
 
         public int ItemPrice {
@@ -37,11 +40,24 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
             }
         }
 
-        
+
         [Size(SizeAttribute.DefaultStringMappingFieldSize)]
         public string FreeOrderName {
             get => freeOrderName;
             set => SetPropertyValue(nameof(FreeOrderName), ref freeOrderName, value);
+        }
+
+
+
+        public DateTime FreeOrderDate {
+            get => orderDate;
+            set => SetPropertyValue(nameof(FreeOrderDate), ref orderDate, value);
+        }
+        
+        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+        public string FreeOrderOwnerName {
+            get => freeOrderOwnerName;
+            set => SetPropertyValue(nameof(FreeOrderOwnerName), ref freeOrderOwnerName, value);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
         public override void AfterConstruction() {
             base.AfterConstruction();
         }
+        string orderOwnerName;
         string _like;
         string defaultCompanyName;
         DateTime orderDate;
@@ -101,7 +102,7 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
             set => SetPropertyValue(nameof(OrderColor), ref orderColor, value);
         }
 
-        
+
         [Size(SizeAttribute.DefaultStringMappingFieldSize)]
         public string DefaultCompanyName {
             get => defaultCompanyName;
@@ -115,7 +116,12 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
         }
 
         
-        
+        [Size(SizeAttribute.DefaultStringMappingFieldSize)]
+        public string OrderOwnerName {
+            get => orderOwnerName;
+            set => SetPropertyValue(nameof(OrderOwnerName), ref orderOwnerName, value);
+        }
+
         public string like {
             get => _like;
             set => SetPropertyValue(nameof(like), ref _like, value);

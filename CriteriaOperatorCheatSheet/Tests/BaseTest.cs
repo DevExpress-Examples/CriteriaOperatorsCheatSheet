@@ -100,7 +100,7 @@ namespace dxTestSolutionXPO.Tests {
             var t10 = ConnectionHelper.AddOrderItem(uow, c1, "Item1-1", 10, false);
             var t11 = ConnectionHelper.AddOrderItem(uow, c1, "Item1-2", 20, true);
             t11.Company = new Company(uow);
-            t11.Company.CompanyName="Company1";
+            t11.Company.CompanyName = "Company1";
             uow.CommitChanges();
         }
         public void PopulateForEscaping() {
@@ -117,16 +117,26 @@ namespace dxTestSolutionXPO.Tests {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
             var c0 = ConnectionHelper.AddOrder(uow, "Order0", 44);
-            var t00 = ConnectionHelper.AddFreeOrderItem(uow, c0, "FreeItem0-1", 10);
-            var t01 = ConnectionHelper.AddFreeOrderItem(uow, c0, "FreeItem0-2", 20);
+            var t00 = ConnectionHelper.AddFreeOrderItem(uow, c0, "FreeItem0-1", 10, new DateTime(2022, 11, 2));
+            var t01 = ConnectionHelper.AddFreeOrderItem(uow, c0, "FreeItem0-2", 20, new DateTime(2022, 11, 1));
             var c1 = ConnectionHelper.AddOrder(uow, "Order1", 55);
-            var t10 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-1", 100);
-            var t11 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-2", 200);
-            var t12 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-3", 300);
-          
+            var t10 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-1", 100, new DateTime(2022, 11, 4));
+            var t11 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-2", 200, new DateTime(2022, 11, 5));
+            var t12 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-3", 300, new DateTime(2022, 11, 3));
+
             uow.CommitChanges();
         }
-
+        public void PopulateForFreeJoin_User() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
+            var c0 = ConnectionHelper.AddOrder(uow, "Order0", "Owner0", new DateTime(2022, 11, 3));
+            var t00 = ConnectionHelper.AddFreeOrderItem(uow, c0, "FreeItem0-1", 10, new DateTime(2022, 11, 2),"Owner0");
+            var t01 = ConnectionHelper.AddFreeOrderItem(uow, c0, "FreeItem0-2", 20, new DateTime(2022, 11, 1),"Owner0");
+            var c1 = ConnectionHelper.AddOrder(uow, "Order1", "Owner1", new DateTime(2022, 11, 25));
+            var t10 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-1", 100, new DateTime(2022, 11, 14),"Owner1");
+            var t11 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-2", 200, new DateTime(2022, 11, 25), "Owner1");
+            uow.CommitChanges();
+        }
         public void PopulateForFreeJoinAssociation() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
@@ -144,8 +154,8 @@ namespace dxTestSolutionXPO.Tests {
         public void PopulateForEnum() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
-            var o0 = ConnectionHelper.AddOrder(uow, "order0",OrderStatusEnum.Active);
-            var o1 = ConnectionHelper.AddOrder(uow, "order1",OrderStatusEnum.Delayed);
+            var o0 = ConnectionHelper.AddOrder(uow, "order0", OrderStatusEnum.Active);
+            var o1 = ConnectionHelper.AddOrder(uow, "order1", OrderStatusEnum.Delayed);
 
             uow.CommitChanges();
         }
@@ -211,8 +221,8 @@ namespace dxTestSolutionXPO.Tests {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
 
-            var  o0= ConnectionHelper.AddOrder(uow, "order0", new DateTime(2022, 8, 2));
-            var  o1= ConnectionHelper.AddOrder(uow, "order1", new DateTime(2022, 8, 3));
+            var o0 = ConnectionHelper.AddOrder(uow, "order0", new DateTime(2022, 8, 2));
+            var o1 = ConnectionHelper.AddOrder(uow, "order1", new DateTime(2022, 8, 3));
 
             var oi00 = ConnectionHelper.AddOrderItem(uow, o0, "Item00", new DateTime(2022, 9, 3));
             var oi01 = ConnectionHelper.AddOrderItem(uow, o0, "Item01", new DateTime(2022, 9, 4));
@@ -235,7 +245,7 @@ namespace dxTestSolutionXPO.Tests {
             uow.CommitChanges();
 
         }
-            public void PopulateForComplContains() {
+        public void PopulateForComplContains() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
             var c0 = ConnectionHelper.AddOrder(uow, "Order0", 44);

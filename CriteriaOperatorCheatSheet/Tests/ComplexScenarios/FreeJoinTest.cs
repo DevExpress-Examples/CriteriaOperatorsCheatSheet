@@ -94,5 +94,47 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             Assert.AreEqual(1, resCollection.Count);
             Assert.AreEqual("Order1", resCollection[0].OrderName);
         }
+
+        [Test]
+        public void Test2_0() {
+            //arrange
+            PopulateForFreeJoin_User();
+            var uow = new UnitOfWork();
+            //act
+            CriteriaOperator criterion =
+                CriteriaOperator.Parse("OrderDate = [<FreeOrderItem>][^.OrderOwnerName = FreeOrderOwnerName].Max(FreeOrderDate)");
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            //assert
+            Assert.AreEqual(1, resCollection.Count);
+            Assert.AreEqual("Order1", resCollection[0].OrderName);
+        }
+        [Test]
+        public void Test2_1() {
+            //arrange
+            PopulateForFreeJoin_User();
+            var uow = new UnitOfWork();
+            //act
+            var criteriaCondition = new BinaryOperator(new OperandProperty("^.OrderOwnerName"), new OperandProperty(nameof(FreeOrderItem.FreeOrderOwnerName)), BinaryOperatorType.Equal);
+            var criteriaRight = new JoinOperand(nameof(FreeOrderItem), criteriaCondition, Aggregate.Max,new OperandProperty(nameof(FreeOrderItem.FreeOrderDate)));
+            CriteriaOperator criterion = new BinaryOperator(new OperandProperty(nameof(Order.OrderDate)), criteriaRight, BinaryOperatorType.Equal);
+            
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            //assert
+            Assert.AreEqual(1, resCollection.Count);
+            Assert.AreEqual("Order1", resCollection[0].OrderName);
+        }
+        [Test]
+        public void Test2_2() {
+            //arrange
+            PopulateForFreeJoin_User();
+            var uow = new UnitOfWork();
+            //act
+            CriteriaOperator criterion =
+                CriteriaOperator.FromLambda<Order>(o => o.OrderDate == FromLambdaFunctions.FreeJoin<FreeOrderItem>(oi => oi.FreeOrderOwnerName == o.OrderOwnerName).Max(oi=>oi.FreeOrderDate));
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            //assert
+            Assert.AreEqual(1, resCollection.Count);
+            Assert.AreEqual("Order1", resCollection[0].OrderName);
+        }
     }
 }
