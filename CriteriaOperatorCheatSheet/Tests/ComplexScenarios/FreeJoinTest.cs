@@ -17,7 +17,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForFreeJoin();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = 
+            CriteriaOperator criterion =
                 CriteriaOperator.Parse("[<FreeOrderItem>][^.Oid = Order.Oid].Count() > 2");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
@@ -45,8 +45,8 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForFreeJoin();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = 
-                CriteriaOperator.FromLambda<Order>(o => FromLambdaFunctions.FreeJoin<FreeOrderItem>(oi => oi.Order.Oid == o.Oid).Count()>2);
+            CriteriaOperator criterion =
+                CriteriaOperator.FromLambda<Order>(o => FromLambdaFunctions.FreeJoin<FreeOrderItem>(oi => oi.Order.Oid == o.Oid).Count() > 2);
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -60,7 +60,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForFreeJoinAssociation();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = 
+            CriteriaOperator criterion =
                 CriteriaOperator.Parse("OrderItems.Count()>2");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
@@ -87,7 +87,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             PopulateForFreeJoinAssociation();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = 
+            CriteriaOperator criterion =
                 CriteriaOperator.FromLambda<Order>(o => o.OrderItems.Count() > 2);
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
@@ -115,9 +115,9 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var uow = new UnitOfWork();
             //act
             var criteriaCondition = new BinaryOperator(new OperandProperty("^.OrderOwnerName"), new OperandProperty(nameof(FreeOrderItem.FreeOrderOwnerName)), BinaryOperatorType.Equal);
-            var criteriaRight = new JoinOperand(nameof(FreeOrderItem), criteriaCondition, Aggregate.Max,new OperandProperty(nameof(FreeOrderItem.FreeOrderDate)));
+            var criteriaRight = new JoinOperand(nameof(FreeOrderItem), criteriaCondition, Aggregate.Max, new OperandProperty(nameof(FreeOrderItem.FreeOrderDate)));
             CriteriaOperator criterion = new BinaryOperator(new OperandProperty(nameof(Order.OrderDate)), criteriaRight, BinaryOperatorType.Equal);
-            
+
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -130,7 +130,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var uow = new UnitOfWork();
             //act
             CriteriaOperator criterion =
-                CriteriaOperator.FromLambda<Order>(o => o.OrderDate == FromLambdaFunctions.FreeJoin<FreeOrderItem>(oi => oi.FreeOrderOwnerName == o.OrderOwnerName).Max(oi=>oi.FreeOrderDate));
+                CriteriaOperator.FromLambda<Order>(o => o.OrderDate == FromLambdaFunctions.FreeJoin<FreeOrderItem>(oi => oi.FreeOrderOwnerName == o.OrderOwnerName).Max(oi => oi.FreeOrderDate));
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -140,48 +140,49 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
         [Test]
         public void Test3_0() {
             //arrange
-            PopulateForFreeJoin_User();
+            PopulateForFreeJoin_Order_Owner();
             var uow = new UnitOfWork();
             //act
             CriteriaOperator criterion =
-                CriteriaOperator.Parse("FreeOrderDate = [<FreeOrderItem>][^.FreeOrderOwnerName = FreeOrderOwnerName].Max(FreeOrderDate)");
-            var resCollection = new XPCollection<FreeOrderItem>(uow, criterion);
-            var resCollection2 = resCollection.OrderBy(x => x.FreeOrderName).ToList();
+                CriteriaOperator.Parse("OrderDate = [<Order>][^.OrderOwnerName = OrderOwnerName].Max(OrderDate)");
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            var resCollection2 = resCollection.OrderBy(x => x.OrderName).ToList();
             //assert
             Assert.AreEqual(2, resCollection.Count);
-            Assert.AreEqual("FreeItem0-1", resCollection2[0].FreeOrderName);
-            Assert.AreEqual("FreeItem1-2", resCollection2[1].FreeOrderName);
+            Assert.AreEqual("Order1", resCollection2[0].OrderName);
+            Assert.AreEqual("Order2", resCollection2[1].OrderName);
         }
         [Test]
         public void Test3_1() {
             //arrange
-            PopulateForFreeJoin_User();
+            PopulateForFreeJoin_Order_Owner();
             var uow = new UnitOfWork();
             //act
-            var criteriaCondition = new BinaryOperator(new OperandProperty("^.FreeOrderOwnerName"), new OperandProperty(nameof(FreeOrderItem.FreeOrderOwnerName)), BinaryOperatorType.Equal);
-            var criteriaRight = new JoinOperand(nameof(FreeOrderItem), criteriaCondition, Aggregate.Max, new OperandProperty(nameof(FreeOrderItem.FreeOrderDate)));
-            CriteriaOperator criterion = new BinaryOperator(new OperandProperty(nameof(FreeOrderItem.FreeOrderDate)), criteriaRight, BinaryOperatorType.Equal);
-            var resCollection = new XPCollection<FreeOrderItem>(uow, criterion);
-            var resCollection2 = resCollection.OrderBy(x => x.FreeOrderName).ToList();
+            var criteriaCondition = new BinaryOperator(new OperandProperty("^.OrderOwnerName"), new OperandProperty(nameof(Order.OrderOwnerName)), BinaryOperatorType.Equal);
+            var criteriaRight = new JoinOperand(nameof(Order), criteriaCondition, Aggregate.Max, new OperandProperty(nameof(Order.OrderDate)));
+            CriteriaOperator criterion = new BinaryOperator(new OperandProperty(nameof(Order.OrderDate)), criteriaRight, BinaryOperatorType.Equal);
+
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            var resCollection2 = resCollection.OrderBy(x => x.OrderName).ToList();
             //assert
             Assert.AreEqual(2, resCollection.Count);
-            Assert.AreEqual("FreeItem0-1", resCollection2[0].FreeOrderName);
-            Assert.AreEqual("FreeItem1-2", resCollection2[1].FreeOrderName);
+            Assert.AreEqual("Order1", resCollection2[0].OrderName);
+            Assert.AreEqual("Order2", resCollection2[1].OrderName);
         }
         [Test]
         public void Test3_2() {
             //arrange
-            PopulateForFreeJoin_User();
+            PopulateForFreeJoin_Order_Owner();
             var uow = new UnitOfWork();
             //act
             CriteriaOperator criterion =
-                CriteriaOperator.FromLambda<FreeOrderItem>(fParent => fParent.FreeOrderDate == FromLambdaFunctions.FreeJoin<FreeOrderItem>(fChild => fChild.FreeOrderOwnerName == fParent.FreeOrderOwnerName).Max(f => f.FreeOrderDate));
-            var resCollection = new XPCollection<FreeOrderItem>(uow, criterion);
-            var resCollection2 = resCollection.OrderBy(x => x.FreeOrderName).ToList();
+                 CriteriaOperator.FromLambda<Order>(parentO => parentO.OrderDate == FromLambdaFunctions.FreeJoin<Order>(childO => childO.OrderOwnerName == parentO.OrderOwnerName).Max(o => o.OrderDate));
+            var resCollection = new XPCollection<Order>(uow, criterion);
+            var resCollection2 = resCollection.OrderBy(x => x.OrderName).ToList();
             //assert
             Assert.AreEqual(2, resCollection.Count);
-            Assert.AreEqual("FreeItem0-1", resCollection2[0].FreeOrderName);
-            Assert.AreEqual("FreeItem1-2", resCollection2[1].FreeOrderName);
+            Assert.AreEqual("Order1", resCollection2[0].OrderName);
+            Assert.AreEqual("Order2", resCollection2[1].OrderName);
         }
     }
 }

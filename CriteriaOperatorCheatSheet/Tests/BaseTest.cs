@@ -137,6 +137,15 @@ namespace dxTestSolutionXPO.Tests {
             var t11 = ConnectionHelper.AddFreeOrderItem(uow, c1, "FreeItem1-2", 200, new DateTime(2022, 11, 25), "Owner1");
             uow.CommitChanges();
         }
+        public void PopulateForFreeJoin_Order_Owner() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
+            var c0 = ConnectionHelper.AddOrder(uow, "Order0", "Owner0", new DateTime(2022, 11, 3));
+            var c1 = ConnectionHelper.AddOrder(uow, "Order1", "Owner0", new DateTime(2022, 11, 4));
+            var c2 = ConnectionHelper.AddOrder(uow, "Order2", "Owner1", new DateTime(2022, 11, 6));
+            var c3 = ConnectionHelper.AddOrder(uow, "Order3", "Owner1", new DateTime(2022, 11, 5));
+            uow.CommitChanges();
+        }
         public void PopulateForFreeJoinAssociation() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
