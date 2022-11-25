@@ -17,7 +17,7 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulateForDates();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = 
+            CriteriaOperator criterion =
                 CriteriaOperator.Parse("GetMonth(OrderDate)>2");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
@@ -51,7 +51,7 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulateForDates();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = 
+            CriteriaOperator criterion =
                 CriteriaOperator.FromLambda<Order>(o => o.OrderDate.Month > 2);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
@@ -70,7 +70,7 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulateForDates();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = 
+            CriteriaOperator criterion =
                 CriteriaOperator.Parse("OrderDate=?", new DateTime(2022, 3, 10));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
@@ -86,7 +86,7 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulateForDates();
             var uow = new UnitOfWork();
             //act
-            CriteriaOperator criterion = 
+            CriteriaOperator criterion =
                 new BinaryOperator(nameof(Order.OrderDate), new DateTime(2022, 3, 10));
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
@@ -103,7 +103,7 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             var uow = new UnitOfWork();
             //act
             var requiredDate = new DateTime(2022, 3, 10);
-            CriteriaOperator criterion = 
+            CriteriaOperator criterion =
                 CriteriaOperator.FromLambda<Order>(o => o.OrderDate == requiredDate);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
@@ -137,7 +137,7 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             var uow = new UnitOfWork();
             //act
             var functionOp = new FunctionOperator(FunctionOperatorType.AddMilliSeconds, new OperandProperty(nameof(Order.OrderDate)), new ConstantValue(1000));
-            var criterion = new BinaryOperator(functionOp, new DateTime(2022, 3, 10).AddMilliseconds(1000),BinaryOperatorType.Equal);
+            var criterion = new BinaryOperator(functionOp, new DateTime(2022, 3, 10).AddMilliseconds(1000), BinaryOperatorType.Equal);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
