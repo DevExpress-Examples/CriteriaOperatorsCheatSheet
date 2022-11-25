@@ -113,5 +113,55 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             Assert.AreEqual(1, result3);
             Assert.AreEqual("Order22", resColl[0].OrderName);
         }
+
+        [Test]
+        public void TestAddMilliseconds_0() {
+            //arrange
+            PopulateForDates_AddMilliseconds();
+            var uow = new UnitOfWork();
+            //act
+            CriteriaOperator criterion =
+                CriteriaOperator.Parse("AddMilliseconds(OrderDate,1000)=?", new DateTime(2022, 3, 10).AddMilliseconds(1000));
+            var xpColl = new XPCollection<Order>(uow);
+            xpColl.Filter = criterion;
+            var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
+            var result3 = resColl.Count;
+            //assert
+            Assert.AreEqual(1, result3);
+            Assert.AreEqual("Order22", resColl[0].OrderName);
+        }
+        [Test]
+        public void TestAddMilliseconds_1() {
+            //arrange
+            PopulateForDates_AddMilliseconds();
+            var uow = new UnitOfWork();
+            //act
+            var functionOp = new FunctionOperator(FunctionOperatorType.AddMilliSeconds, new OperandProperty(nameof(Order.OrderDate)), new ConstantValue(1000));
+            var criterion = new BinaryOperator(functionOp, new DateTime(2022, 3, 10).AddMilliseconds(1000),BinaryOperatorType.Equal);
+            var xpColl = new XPCollection<Order>(uow);
+            xpColl.Filter = criterion;
+            var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
+            var result3 = resColl.Count;
+            //assert
+            Assert.AreEqual(1, result3);
+            Assert.AreEqual("Order22", resColl[0].OrderName);
+        }
+        [Test]
+        public void TestAddMilliseconds_2() {
+            //arrange
+            PopulateForDates_AddMilliseconds();
+            var uow = new UnitOfWork();
+            //act
+            var targetDate = new DateTime(2022, 3, 10).AddMilliseconds(1000);
+            CriteriaOperator criterion =
+               CriteriaOperator.FromLambda<Order>(o => o.OrderDate.AddMilliseconds(1000) == targetDate);
+            var xpColl = new XPCollection<Order>(uow);
+            xpColl.Filter = criterion;
+            var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
+            var result3 = resColl.Count;
+            //assert
+            Assert.AreEqual(1, result3);
+            Assert.AreEqual("Order22", resColl[0].OrderName);
+        }
     }
 }

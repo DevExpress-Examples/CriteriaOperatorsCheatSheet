@@ -40,6 +40,13 @@ namespace dxTestSolutionXPO.Tests {
 
             uow.CommitChanges();
         }
+        public void PopulateForDates_AddMilliseconds() {
+            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
+            var uow = new UnitOfWork();
+            ConnectionHelper.AddOrder(uow, "Order11", new DateTime(2022, 2, 10));
+            ConnectionHelper.AddOrder(uow, "Order22", new DateTime(2022, 3, 10));
+            uow.CommitChanges();
+        }
         public void PopulateСollectionWithActive() {
             ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema);
             var uow = new UnitOfWork();
