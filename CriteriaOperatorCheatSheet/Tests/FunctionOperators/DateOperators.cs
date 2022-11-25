@@ -153,7 +153,8 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             var uow = new UnitOfWork();
             //act
             var targetDate = new DateTime(2022, 3, 10).AddMilliseconds(1000);
-            CriteriaOperator criterion = CriteriaOperator.FromLambda<Order>(o => o.OrderDate.AddMilliseconds(1000) == targetDate);
+            var criterion = 
+                CriteriaOperator.FromLambda<Order>(o => o.OrderDate.AddMilliseconds(1000) == targetDate);
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var resColl = xpColl.OrderBy(x => x.OrderName).ToList();
