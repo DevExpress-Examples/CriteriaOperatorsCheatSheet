@@ -19,7 +19,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var uow = new UnitOfWork();
             //act
             CriteriaOperator criterion =
-                CriteriaOperator.Parse("OrderName like '%der1'");
+                CriteriaOperator.Parse("Contains(OrderName,'der1')");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -31,7 +31,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var uow = new UnitOfWork();
             //act
             CriteriaOperator criterion =
-                CriteriaOperator.Parse("[OrderName] like '%der1'");
+                CriteriaOperator.Parse("Contains([OrderName],'der1')");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -44,7 +44,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var uow = new UnitOfWork();
             //act
             CriteriaOperator criterion =
-                CriteriaOperator.Parse("[like] like '%ike0'");
+                CriteriaOperator.Parse("Contains([Contains],'ike0')");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -60,7 +60,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             Assert.Throws<CriteriaParserException>(
             () => {
                 CriteriaOperator criterion =
-                CriteriaOperator.Parse("like like '%ike0'");
+                CriteriaOperator.Parse("Contains(Contains,'ike0')");
             }
             );
         }
@@ -72,7 +72,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var uow = new UnitOfWork();
             //act
             CriteriaOperator criterion =
-                CriteriaOperator.FromLambda<Order>(o => o.like.Contains("ike0"));
+                CriteriaOperator.FromLambda<Order>(o => o.Contains.Contains("ike0"));
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);
@@ -85,7 +85,7 @@ namespace dxTestSolutionXPO.Tests.ComplexScenarios {
             var uow = new UnitOfWork();
             //act
             CriteriaOperator criterion =
-                CriteriaOperator.Parse("@like like '%ike0'");
+                CriteriaOperator.Parse("Contains(@Contains, 'ike0')");
             var resCollection = new XPCollection<Order>(uow, criterion);
             //assert
             Assert.AreEqual(1, resCollection.Count);

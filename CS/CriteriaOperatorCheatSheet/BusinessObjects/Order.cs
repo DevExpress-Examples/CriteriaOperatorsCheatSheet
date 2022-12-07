@@ -122,9 +122,9 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
             set => SetPropertyValue(nameof(OrderOwnerName), ref orderOwnerName, value);
         }
 
-        public string like {
+        public string Contains {
             get => _like;
-            set => SetPropertyValue(nameof(like), ref _like, value);
+            set => SetPropertyValue(nameof(Contains), ref _like, value);
         }
 
     }

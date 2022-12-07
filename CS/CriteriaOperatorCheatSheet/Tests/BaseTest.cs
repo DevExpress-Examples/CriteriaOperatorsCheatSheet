@@ -115,8 +115,8 @@ namespace dxTestSolutionXPO.Tests {
             var uow = new UnitOfWork();
             var c0 = ConnectionHelper.AddOrder(uow, "Order0", 44);
             var c1 = ConnectionHelper.AddOrder(uow, "Order1", 55);
-            c0.like = "TestLike0";
-            c1.like = "TestLike1";
+            c0.Contains = "TestLike0";
+            c1.Contains = "TestLike1";
             uow.CommitChanges();
         }
 
