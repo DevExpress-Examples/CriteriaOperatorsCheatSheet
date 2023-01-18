@@ -32,6 +32,23 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             PopulatePlainCollectionForConcat();
             var uow = new UnitOfWork();
             //act
+
+            var concatOperator = new FunctionOperator(FunctionOperatorType.Concat, "Test", "Value");
+            CriteriaOperator criterion =
+               new BinaryOperator(nameof(Order.OrderName), concatOperator);
+            var xpColl = new XPCollection<Order>(uow);
+            xpColl.Filter = criterion;
+            var result3 = xpColl.Count;
+            //assert
+            Assert.AreEqual(1, result3);
+            Assert.AreEqual(10, xpColl[0].Price);
+        }
+        [Test]
+        public void Test0_2() {
+            //arrange
+            PopulatePlainCollectionForConcat();
+            var uow = new UnitOfWork();
+            //act
             CriteriaOperator criterion =
                 //CriteriaOperator.Parse("OrderName=Concat('Test','Value')");
                 CriteriaOperator.FromLambda<Order>(o=>o.OrderName=="Test"+"Value");
