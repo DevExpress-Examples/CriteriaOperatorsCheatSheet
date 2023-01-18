@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace dxTestSolutionXPO.Tests.FunctionOperators {
     [TestFixture]
-    public class StringOperators2: BaseTest {
+    public class StringOperators2 : BaseTest {
         [Test]
         public void Test0_0() {
             //arrange
@@ -50,8 +50,7 @@ namespace dxTestSolutionXPO.Tests.FunctionOperators {
             var uow = new UnitOfWork();
             //act
             CriteriaOperator criterion =
-                //CriteriaOperator.Parse("OrderName=Concat('Test','Value')");
-                CriteriaOperator.FromLambda<Order>(o=>o.OrderName=="Test"+"Value");
+                CriteriaOperator.FromLambda<Order>(o => o.OrderName == "Test" + "Value");
             var xpColl = new XPCollection<Order>(uow);
             xpColl.Filter = criterion;
             var result3 = xpColl.Count;
