@@ -16,7 +16,6 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
         }
         string freeOrderOwnerName;
         DateTime orderDate;
-        double propertyName;
         string freeOrderName;
         Order _order;
 

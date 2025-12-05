@@ -38,6 +38,15 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
                 SetPropertyValue(nameof(LastName), ref lastName, value);
             }
         }
+        string firstName;
+        public string FirstName {
+            get {
+                return firstName;
+            }
+            set {
+                SetPropertyValue(nameof(FirstName), ref firstName, value);
+            }
+        }
         int _price;
         public int Price {
             get {

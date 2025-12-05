@@ -26,6 +26,15 @@ namespace dxTestSolutionXPO.Module.BusinessObjects {
                 SetPropertyValue(nameof(OrderItemName), ref _orderItemName, value);
             }
         }
+        string subject;
+        public string Subject {
+            get {
+                return subject;
+            }
+            set {
+                SetPropertyValue(nameof(Subject), ref subject, value);
+            }
+        }
         Order _order;
         [Association]
         public Order Order {
