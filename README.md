@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
-# CriteriaOperatorsCheatSheet
+# Criteria Operators Cheat Sheet
 
 This example is a part of the following help topic: [Build Criteria - Cheat Sheet](https://docs.devexpress.com/CoreLibraries/404016/devexpress-data-library/criteria-cheat-sheet).
 <!-- feedback -->
@@ -14,3 +14,4 @@ This example is a part of the following help topic: [Build Criteria - Cheat Shee
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
+
